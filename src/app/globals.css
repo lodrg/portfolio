@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #ff7f00;
+  --primary-gradient: linear-gradient(45deg, #ff7f00, #ffa64d);
 }
 
 @theme inline {
@@ -16,6 +18,8 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #ff8c42;
+    --primary-gradient: linear-gradient(45deg, #ff8c42, #ffb366);
   }
 }
 
@@ -23,4 +27,103 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 255, 127, 0;
+    --color-primary-gradient: linear-gradient(45deg, #ff7f00, #ffa64d);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-primary: 255, 140, 66;
+      --color-primary-gradient: linear-gradient(45deg, #ff8c42, #ffb366);
+    }
+  }
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom styles for prose content */
+.prose h2 {
+  @apply text-2xl font-bold mb-4 mt-8;
+}
+
+.prose h3 {
+  @apply text-xl font-bold mb-3 mt-6;
+}
+
+.prose p {
+  @apply mb-4;
+}
+
+.prose ul {
+  @apply list-disc pl-6 mb-4;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@theme {
+  /* 定义薰衣草颜色 */
+  --color-lavender-50: #f8f5ff;
+  --color-lavender-100: #f2eafa;
+  --color-lavender-200: #e3d7f5;
+  --color-lavender-300: #cbb7eb;
+  --color-lavender-400: #a786df;
+  --color-lavender-500: #8e6bd6; /* 主颜色 */
+  --color-lavender-600: #764dbf;
+  --color-lavender-700: #5e36a8;
+  --color-lavender-800: #462291;
+  --color-lavender-900: #300e7a;
+
+  /* 定义薰衣草渐变 */
+  --color-lavender-gradient: linear-gradient(90deg, #e3d7f5, #8e6bd6, #5e36a8);
+
+  /* 定义薰衣草动画 */
+  --animate-lavender-fade: lavender-fade 0.5s ease-in-out;
+
+  @keyframes lavender-fade {
+    0% {
+      background-color: var(--color-lavender-50);
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      background-color: var(--color-lavender-500);
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
