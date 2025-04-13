@@ -88,7 +88,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               key={skill}
               variants={fadeIn}
               transition={{ delay: 0.1 + index * 0.05 }}
-              className="px-3 py-1 bg-lavender-700 text-lavender-700 text-sm rounded-full hover:bg-lavender-200 transition-colors"
+              className="px-3 py-1 bg-lavender-300 text-black-700 text-sm rounded-full hover:bg-lavender-200 transition-colors"
             >
               {skill}
             </motion.span>

@@ -160,9 +160,9 @@ export default function ProjectsPage() {
                 {project.skills.map((skill) => (
                   <motion.span 
                     key={skill} 
-                    className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full"
+                    className="px-3 py-1 bg-lavender-100 text-black-700 text-sm rounded-full"
                     variants={skillItemVariants}
-                    whileHover={{ backgroundColor: "#EBF5FF", color: "#3B82F6" }}
+                    // whileHover={{ backgroundColor: "#EBF5FF" }}
                   >
                     {skill}
                   </motion.span>
