@@ -1,16 +1,16 @@
 import { PersonalInfo } from '../types/personal-info';
 
 export const personalInfo: PersonalInfo = {
-  name: "Your Name",
+  name: "David300",
   title: "Full Stack Developer",
-  bio: "Passionate developer with expertise in design, frontend, backend, and machine learning. Building beautiful and functional web applications.",
+  bio: "I am a technology enthusiast and full-stack developer skilled at integrating design, frontend, backend, and machine learning to create stunning web applications. I am committed to solving real-world problems with technology and constantly pursuing exceptional user experiences.",
   avatar: "/images/profile.jpg",
-  location: "Your Location",
-  email: "your.email@example.com",
+  location: "China Beijing",
+  email: "xuanzhiweisw@gmail.com",
   socialLinks: [
     {
       platform: "GitHub",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/lodrg",
       icon: "github"
     },
     {
@@ -20,7 +20,7 @@ export const personalInfo: PersonalInfo = {
     },
     {
       platform: "Twitter",
-      url: "https://twitter.com/yourusername",
+      url: "https://x.com/David_300song",
       icon: "twitter"
     }
   ],

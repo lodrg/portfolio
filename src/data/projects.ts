@@ -33,10 +33,10 @@ export const projects: Project[] = [
   {
     id: "go-db-project",
     title: "GoDB Database System",
-    description: "A custom database system built with Go, featuring high performance and scalability.",
+    description: "A custom database system built with Go from scratch, featuring high performance and scalability.",
     thumbnail: "/images/projects/godb.jpg",
     skills: ["Go", "Database Design", "API Development"],
-    github: "https://github.com/yourusername/godb",
+    github: "https://github.com/lodrg/godb",
     featured: true
   },
   {
