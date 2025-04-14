@@ -11,7 +11,7 @@ export default function Hero() {
   // 状态控制设计辅助线的显示
   const [showDesignGuides, setShowDesignGuides] = useState(false);
   const [hasShown, setHasShown] = useState(false);
-  const [isFading, setIsFading] = useState(false);
+  const [isFading] = useState(false);
 
 
   // 使用ref获取实际元素位置
@@ -238,14 +238,14 @@ export default function Hero() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full h-full">
                 {/* 双栏布局标记 */}
                 <div className="border-r border-dashed border-lavender-500/30 relative h-full hidden md:block">
-                  {/* <div className="absolute top-1/2 right-6 -translate-y-1/2 border border-lavender-500/30 rounded-full w-8 h-8 flex items-center justify-center"> */}
-                    {/* <span className="text-xs text-lavender-500/70 font-mono">50%</span> */}
-                  {/* </div> */}
+                  {/* <div className="absolute top-1/2 right-6 -translate-y-1/2 border border-lavender-500/30 rounded-full w-8 h-8 flex items-center justify-center">
+                    <span className="text-xs text-lavender-500/70 font-mono">50%</span>
+                  </div> */}
                 </div>
                 <div className="border-l border-dashed border-lavender-500/30 relative h-full hidden md:block">
-                  {/* <div className="absolute top-1/2 left-6 -translate-y-1/2 border border-lavender-500/30 rounded-full w-8 h-8 flex items-center justify-center"> */}
-                    {/* <span className="text-xs text-lavender-500/70 font-mono">50%</span> */}
-                  {/* </div> */}
+                  {/* <div className="absolute top-1/2 left-6 -translate-y-1/2 border border-lavender-500/30 rounded-full w-8 h-8 flex items-center justify-center">
+                    <span className="text-xs text-lavender-500/70 font-mono">50%</span>
+                  </div> */}
                 </div>
               </div>
             </motion.div>
