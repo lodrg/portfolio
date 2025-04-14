@@ -23,39 +23,39 @@ export default function ProjectsPage() {
 
   const projectVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.5, 
-        ease: [0.22, 1, 0.36, 1] 
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
       }
     },
-    hover: { 
+    hover: {
       y: -10,
-      transition: { 
-        duration: 0.3, 
-        ease: [0.22, 1, 0.36, 1] 
+      transition: {
+        duration: 0.3,
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
 
   const iconVariants = {
-    hover: { 
+    hover: {
       scale: 1.2,
       rotate: 5,
-      transition: { 
-        duration: 0.2, 
-        ease: "easeInOut" 
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut"
       }
     }
   };
 
   const skillsVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         staggerChildren: 0.05,
         delayChildren: 0.2
       }
@@ -64,11 +64,11 @@ export default function ProjectsPage() {
 
   const skillItemVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
-      transition: { 
-        duration: 0.3, 
+      transition: {
+        duration: 0.3,
         ease: [0.22, 1, 0.36, 1]
       }
     }
@@ -77,9 +77,9 @@ export default function ProjectsPage() {
   const imageVariants = {
     hover: {
       scale: 1.05,
-      transition: { 
-        duration: 0.5, 
-        ease: [0.22, 1, 0.36, 1] 
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };
@@ -90,7 +90,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="container mx-auto px-4 py-20 pt-32">
-      <motion.div 
+      <motion.div
         ref={headerRef}
         initial={{ opacity: 0, y: 20 }}
         animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -99,15 +99,15 @@ export default function ProjectsPage() {
       >
         <h1 className="text-3xl md:text-4xl font-bold mb-8 relative">
           My Projects
-          <motion.span 
-            className="absolute -bottom-2 left-0 h-1 bg-lavender-700" 
+          <motion.span
+            className="absolute -bottom-2 left-0 h-1 bg-lavender-700"
             initial={{ width: 0 }}
             animate={headerInView ? { width: "120px" } : { width: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           />
         </h1>
-        
-        <motion.p 
+
+        <motion.p
           className="text-lg text-gray-600 mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -116,15 +116,15 @@ export default function ProjectsPage() {
           Here's a collection of my work showcasing my skills in design, frontend, backend, and machine learning. Each project represents a unique challenge and learning opportunity.
         </motion.p>
       </motion.div>
-      
-      <motion.div 
+
+      <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {projects.map((project, index) => (
-          <motion.div 
+          <motion.div
             key={project.id}
             className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all"
             variants={projectVariants}
@@ -148,28 +148,28 @@ export default function ProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity" />
               </motion.div>
             </div>
-            
+
             <div className="p-6">
               <h2 className="text-xl font-bold mb-2 text-gray-900">{project.title}</h2>
               <p className="text-gray-600 mb-4 line-clamp-2">{project.description}</p>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex flex-wrap gap-2 mb-4"
                 variants={skillsVariants}
               >
                 {project.skills.map((skill) => (
-                  <motion.span 
-                    key={skill} 
+                  <motion.span
+                    key={skill}
                     className="px-3 py-1 bg-lavender-100 text-black-700 text-sm rounded-full"
                     variants={skillItemVariants}
-                    // whileHover={{ backgroundColor: "#EBF5FF" }}
+                  // whileHover={{ backgroundColor: "#EBF5FF" }}
                   >
                     {skill}
                   </motion.span>
                 ))}
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="flex justify-between items-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -192,12 +192,12 @@ export default function ProjectsPage() {
                     </motion.span>
                   </motion.span>
                 </Link>
-                
+
                 <div className="flex space-x-3">
                   {project.github && (
-                    <motion.a 
-                      href={project.github} 
-                      target="_blank" 
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-700 hover:text-lavender-700 transition-colors p-1"
                       whileHover="hover"
@@ -206,11 +206,11 @@ export default function ProjectsPage() {
                       <FaGithub size={20} />
                     </motion.a>
                   )}
-                  
+
                   {project.link && (
-                    <motion.a 
-                      href={project.link} 
-                      target="_blank" 
+                    <motion.a
+                      href={project.link}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-700 hover:text-lavender-700 transition-colors p-1"
                       whileHover="hover"
