@@ -170,21 +170,21 @@ export default function Hero() {
     hidden: {
       opacity: 0,
       transition: {
-        duration: 0.8,
+        duration: 1.2,
         ease: "easeInOut"
       }
     },
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.8,
+        duration: 1.2,
         ease: "easeInOut"
       }
     },
     exit: {
       opacity: 0,
       transition: {
-        duration: 0.8,
+        duration: 1.2,
         ease: "easeInOut"
       }
     }
