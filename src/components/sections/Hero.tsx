@@ -166,29 +166,30 @@ export default function Hero() {
     }
   };
 
-  const designGuideVariants = {
-    hidden: {
-      opacity: 0,
-      transition: {
-        duration: 1.2,
-        ease: "easeInOut"
-      }
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 1.2,
-        ease: "easeInOut"
-      }
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: 1.2,
-        ease: "easeInOut"
-      }
+// 动画变体 - 调整动画时间为2秒
+const designGuideVariants = {
+  hidden: {
+    opacity: 0,
+    transition: {
+      duration: 2,
+      ease: [0.22, 1, 0.36, 1]
     }
-  };
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 2,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 2,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
 
   return (
     <section className="min-h-screen flex items-center pt-20 pb-16 relative" ref={sectionRef}>
@@ -353,9 +354,10 @@ export default function Hero() {
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1.8 } }}
+                  variants={designGuideVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">h1</div>
                   <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-4</div>
@@ -381,9 +383,10 @@ export default function Hero() {
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1.8 } }}
+                  variants={designGuideVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">h2</div>
                   <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-6</div>
@@ -409,9 +412,10 @@ export default function Hero() {
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1.8 } }}
+                  variants={designGuideVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">p</div>
                   <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-8</div>
@@ -466,9 +470,10 @@ export default function Hero() {
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1.8 } }}
+                  variants={designGuideVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">buttons</div>
                   <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-8</div>
@@ -508,9 +513,10 @@ export default function Hero() {
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1.8 } }}
+                  variants={designGuideVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">social</div>
                   <div className="absolute -top-4 left-0 text-[10px] text-lavender-500/70 font-mono">space-x-4</div>
@@ -566,9 +572,10 @@ export default function Hero() {
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-2 border-2 border-dashed border-lavender-500/40 rounded-full pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1.8 } }}
+                  variants={designGuideVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                 >
                   {/* 十字中心线 */}
                   <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-lavender-500/40"></div>
