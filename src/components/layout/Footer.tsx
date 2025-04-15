@@ -21,24 +21,24 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">{personalInfo.name}</h3>
-            <p className="text-gray-300 mb-4">{personalInfo.title}</p>
-            <p className="text-gray-300">{personalInfo.bio}</p>
+            <h3 className="text-xl text-lavender-100 font-bold mb-4">{personalInfo.name}</h3>
+            <p className="text-lavender-100 mb-4">{personalInfo.title}</p>
+            <p className="text-lavender-100">{personalInfo.bio}</p>
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <h3 className="text-xl text-lavender-100 font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="/" className="text-gray-300 hover:text-white">Home</Link></li>
-              <li><Link href="/about" className="text-gray-300 hover:text-white">About</Link></li>
-              <li><Link href="/skills" className="text-gray-300 hover:text-white">Skills</Link></li>
-              <li><Link href="/projects" className="text-gray-300 hover:text-white">Projects</Link></li>
-              <li><Link href="/contact" className="text-gray-300 hover:text-white">Contact</Link></li>
+              <li><Link href="/" className="text-lavender-200 hover:text-white">Home</Link></li>
+              <li><Link href="/about" className="text-lavender-200 hover:text-white">About</Link></li>
+              <li><Link href="/skills" className="text-lavender-200 hover:text-white">Skills</Link></li>
+              <li><Link href="/projects" className="text-lavender-200 hover:text-white">Projects</Link></li>
+              <li><Link href="/contact" className="text-lavender-200 hover:text-white">Contact</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-4">Connect</h3>
+            <h3 className="text-xl text-lavender-100 font-bold mb-4">Connect</h3>
             <div className="flex space-x-4 mb-4">
               {personalInfo.socialLinks.map((link) => (
                 <a 
@@ -46,13 +46,13 @@ export default function Footer() {
                   href={link.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-lavender-300 hover:text-white transition-colors"
                 >
                   {getIconComponent(link.icon)}
                 </a>
               ))}
             </div>
-            <p className="text-gray-300">
+            <p className="text-lavender-300">
               <a href={`mailto:${personalInfo.email}`} className="hover:text-white">
                 {personalInfo.email}
               </a>
@@ -60,7 +60,7 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <div className="border-t border-lavender-800 mt-8 pt-8 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.</p>
         </div>
       </div>
