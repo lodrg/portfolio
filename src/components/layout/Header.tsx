@@ -21,14 +21,6 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
   
-  // 预取所有主要路由
-  useEffect(() => {
-    navLinks.forEach(link => {
-      if (link.href !== '/') {
-        router.prefetch(link.href);
-      }
-    });
-  }, [router]);
 
   // 监听滚动事件，改变 header 样式
   useEffect(() => {
@@ -126,7 +118,6 @@ export default function Header() {
             <li key={link.href}>
               <Link 
                 href={link.href}
-                prefetch={true}
                 className={
                   pathname === link.href 
                     ? 'text-lavender-700 font-medium' 
