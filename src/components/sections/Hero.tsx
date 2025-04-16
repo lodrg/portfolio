@@ -192,7 +192,7 @@ const designGuideVariants = {
 };
 
   return (
-    <section className="min-h-screen flex items-center pt-20 pb-16 relative" ref={sectionRef}>
+    <section className="min-h-screen flex items-center pt-20 pb-16 relative overflow-hidden" ref={sectionRef}>
       {/* 设计辅助系统 */}
       <AnimatePresence>
         {showDesignGuides && (
@@ -230,7 +230,7 @@ const designGuideVariants = {
 
             {/* 精确内容网格 */}
             <motion.div
-              className="container mx-auto px-4 fixed inset-0 pt-20 pb-16 flex items-center pointer-events-none z-10"
+              className="container mx-auto px-4 absolute inset-0 pt-20 pb-16 flex items-center pointer-events-none z-10"
               initial="hidden"
               animate="visible"// 根据 isFading 动态设置动画
               exit="exit"
