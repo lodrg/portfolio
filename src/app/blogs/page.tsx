@@ -4,15 +4,6 @@ import { blogs } from "@/data/blogs";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-// 简化的动画变量
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-};
-
 // 卡片出现效果 - 模拟 SkillsPage 风格
 const cardVariants = {
   hidden: { 
