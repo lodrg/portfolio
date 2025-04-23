@@ -1,5 +1,6 @@
 "use client";
 
+import Image from 'next/image';
 import { FC, MouseEvent } from 'react';
 
 // 定义图片项接口
@@ -31,9 +32,11 @@ const GalleryImage: FC<GalleryImageProps> = ({ src, alt, onClick }) => {
 
   return (
     <div className="mb-4 break-inside-avoid group relative">
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={500}  // 设置适当的尺寸
+        height={300} // 或使用 fill 属性
         className="w-full rounded-lg shadow-md transition-all duration-300"
       />
       <div className="absolute inset-0 backdrop-blur-sm bg-white/20 flex items-center justify-center transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100">
