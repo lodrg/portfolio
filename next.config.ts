@@ -12,7 +12,16 @@ const nextConfig: NextConfig = {
 module.exports = {
   images: {
     remotePatterns: [
-      new URL('https://images.unsplash.com/**')
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'notion-avatar.app',
+        pathname: '/api/**',
+      },
     ],
   },
 }

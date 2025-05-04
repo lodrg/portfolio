@@ -561,7 +561,7 @@ const designGuideVariants = {
                   priority
                 />
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-tr from-lavender-500/20 to-purple-500/10"
+                  className="absolute inset-0 "
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 1 }}
