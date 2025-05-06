@@ -11,6 +11,7 @@ export interface SocialLink {
     avatar: string;
     location: string;
     email: string;
+    phone: string;
     socialLinks: SocialLink[];
     resume?: string;
   }

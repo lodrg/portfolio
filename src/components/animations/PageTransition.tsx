@@ -3,7 +3,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 const pageVariants = {
   hidden: { opacity: 0 },
@@ -25,12 +25,22 @@ const pageVariants = {
 
 export default function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const [prevPath, setPrevPath] = useState(pathname);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    // 只有当路径真正改变时才触发动画
+    if (pathname !== prevPath) {
+      setShouldAnimate(true);
+      setPrevPath(pathname);
+    }
+  }, [pathname, prevPath]);
   
   return (
     <AnimatePresence mode="popLayout">
       <motion.div
         key={pathname}
-        initial="hidden"
+        initial={shouldAnimate ? "hidden" : false}
         animate="visible"
         exit="exit"
         variants={pageVariants}

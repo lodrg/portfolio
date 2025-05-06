@@ -1,195 +1,196 @@
 "use client";
 
-import { useState } from 'react';
-import { personalInfo } from '../../data/personal-info';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { useLocalizedData } from '@/utils/language';
+
+const sectionText = {
+  title: {
+    en: "Contact",
+    zh: "联系"
+  },
+  subtitle: {
+    en: "Get in touch with me",
+    zh: "与我取得联系"
+  },
+  name: {
+    en: "Name",
+    zh: "姓名"
+  },
+  email: {
+    en: "Email",
+    zh: "邮箱"
+  },
+  message: {
+    en: "Message",
+    zh: "消息"
+  },
+  send: {
+    en: "Send Message",
+    zh: "发送消息"
+  },
+  contactInfo: {
+    en: "Contact Information",
+    zh: "联系信息"
+  },
+  location: {
+    en: "Location",
+    zh: "位置"
+  }
+};
 
 export default function ContactSection() {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value
-    });
+  const { personalInfo, language } = useLocalizedData();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
   };
-  
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    
-    // This would be replaced with actual form submission logic
-    // For now, we'll just simulate a delay
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-      setFormState({ name: '', email: '', message: '' });
-    }, 1500);
-  };
-  
-  const getIconComponent = (icon: string) => {
-    switch (icon) {
-      case 'github':
-        return <FaGithub size={24} />;
-      case 'linkedin':
-        return <FaLinkedin size={24} />;
-      case 'twitter':
-        return <FaTwitter size={24} />;
-      default:
-        return null;
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1]
+      }
     }
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have a question or want to work together? Feel free to reach out!
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            {sectionText.title[language]}
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            {sectionText.subtitle[language]}
           </p>
         </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+        >
+          <motion.div variants={itemVariants} className="space-y-8">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
+              {sectionText.contactInfo[language]}
+            </h3>
             
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <div className="p-3 bg-lavender-700 text-lavender-700 rounded-full mr-4">
-                  <FaEnvelope size={20} />
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium mb-1">Email</h4>
-                  <a href={`mailto:${personalInfo.email}`} className="text-gray-600 hover:text-lavender-700 transition-colors">
-                    {personalInfo.email}
-                  </a>
-                </div>
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <FaEnvelope className="text-lavender-700 dark:text-lavender-400" />
               </div>
-              
-              <div className="flex items-start">
-                <div className="p-3 bg-lavender-700 text-lavender-700 rounded-full mr-4">
-                  <FaMapMarkerAlt size={20} />
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium mb-1">Location</h4>
-                  <p className="text-gray-600">{personalInfo.location}</p>
-                </div>
+              <div>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Email</h4>
+                <a 
+                  href={`mailto:${personalInfo.email}`}
+                  className="text-gray-600 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors"
+                >
+                  {personalInfo.email}
+                </a>
               </div>
             </div>
-            
-            <div className="mt-8">
-              <h4 className="text-lg font-medium mb-4">Connect with me</h4>
-              <div className="flex space-x-4">
-                {personalInfo.socialLinks.map((link) => (
-                  <a 
-                    key={link.platform} 
-                    href={link.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white text-gray-700 hover:text-lavender-700 rounded-full shadow-sm hover:shadow transition-all"
-                  >
-                    {getIconComponent(link.icon)}
-                  </a>
-                ))}
+
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <FaPhone className="text-lavender-700 dark:text-lavender-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Phone</h4>
+                <a 
+                  href={`tel:${personalInfo.phone}`}
+                  className="text-gray-600 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors"
+                >
+                  {personalInfo.phone}
+                </a>
               </div>
             </div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
-            
-            {submitted ? (
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                <h4 className="text-xl font-medium text-green-800 mb-2">Thank you!</h4>
-                <p className="text-green-700">
-                  Your message has been sent successfully. I'll get back to you as soon as possible.
+
+            <div className="flex items-start space-x-4">
+              <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <FaMapMarkerAlt className="text-lavender-700 dark:text-lavender-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
+                  {sectionText.location[language]}
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {personalInfo.location}
                 </p>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formState.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 outline-none transition-colors"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formState.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 outline-none transition-colors"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formState.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-lavender-500 outline-none transition-colors resize-none"
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className={`w-full px-6 py-3 bg-lavender-700 text-white rounded-md hover:bg-lavender-700 transition-colors ${
-                    submitting ? 'opacity-70 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {submitting ? 'Sending...' : 'Send Message'}
-                </button>
-              </form>
-            )}
+            </div>
           </motion.div>
-        </div>
+
+          <motion.div variants={itemVariants}>
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  {sectionText.name[language]}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 dark:focus:ring-lavender-400 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  {sectionText.email[language]}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 dark:focus:ring-lavender-400 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  {sectionText.message[language]}
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 dark:focus:ring-lavender-400 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                  required
+                ></textarea>
+              </div>
+
+              <motion.button
+                type="submit"
+                className="w-full px-6 py-3 bg-lavender-700 text-white rounded-lg hover:bg-lavender-800 transition-colors"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {sectionText.send[language]}
+              </motion.button>
+            </form>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

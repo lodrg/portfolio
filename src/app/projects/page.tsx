@@ -97,10 +97,10 @@ export default function ProjectsPage() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="max-w-4xl"
       >
-        <h1 className="text-3xl md:text-4xl font-bold mb-8 relative">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 relative text-gray-900 dark:text-white">
           My Projects
           <motion.span
-            className="absolute -bottom-2 left-0 h-1 bg-lavender-700"
+            className="absolute -bottom-2 left-0 h-1 bg-lavender-700 dark:bg-lavender-500"
             initial={{ width: 0 }}
             animate={headerInView ? { width: "120px" } : { width: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
         </h1>
 
         <motion.p
-          className="text-lg text-gray-600 mb-12"
+          className="text-lg text-gray-600 dark:text-gray-300 mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -118,40 +118,62 @@ export default function ProjectsPage() {
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all"
             variants={projectVariants}
             whileHover="hover"
-            custom={index}
-            layout
+            className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
           >
-            <div className="relative h-60 w-full overflow-hidden">
-              <motion.div
-                variants={imageVariants}
-                whileHover="hover"
-                className="h-full w-full"
-              >
-                <Image
-                  src={project.thumbnail}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </motion.div>
-            </div>
+            <motion.div
+              variants={imageVariants}
+              className="relative h-60 w-full"
+            >
+              <Image
+                src={project.thumbnail}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
+              />
+              
+              <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity flex items-center justify-center gap-4 opacity-0 hover:opacity-100">
+                {project.github && (
+                  <motion.a 
+                    href={project.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                    variants={iconVariants}
+                    whileHover="hover"
+                  >
+                    <FaGithub size={20} />
+                  </motion.a>
+                )}
+                
+                {project.link && (
+                  <motion.a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                    variants={iconVariants}
+                    whileHover="hover"
+                  >
+                    <FaExternalLinkAlt size={18} />
+                  </motion.a>
+                )}
+              </div>
+            </motion.div>
 
             <div className="p-6">
-              <h2 className="text-xl font-bold mb-2 text-gray-900">{project.title}</h2>
-              <p className="text-gray-600 mb-4 line-clamp-2">{project.description}</p>
+              <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{project.description}</p>
 
               <motion.div
                 className="flex flex-wrap gap-2 mb-4"
@@ -160,9 +182,8 @@ export default function ProjectsPage() {
                 {project.skills.map((skill) => (
                   <motion.span
                     key={skill}
-                    className="px-3 py-1 bg-lavender-100 text-black-700 text-sm rounded-full"
+                    className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 text-sm rounded-full"
                     variants={skillItemVariants}
-                  // whileHover={{ backgroundColor: "#EBF5FF" }}
                   >
                     {skill}
                   </motion.span>
@@ -177,7 +198,7 @@ export default function ProjectsPage() {
               >
                 <Link href={`/projects/${project.id}`}>
                   <motion.span
-                    className="text-lavender-700 font-medium inline-flex items-center group"
+                    className="text-lavender-700 dark:text-lavender-400 font-medium inline-flex items-center group"
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -192,34 +213,6 @@ export default function ProjectsPage() {
                     </motion.span>
                   </motion.span>
                 </Link>
-
-                <div className="flex space-x-3">
-                  {project.github && (
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-700 hover:text-lavender-700 transition-colors p-1"
-                      whileHover="hover"
-                      variants={iconVariants}
-                    >
-                      <FaGithub size={20} />
-                    </motion.a>
-                  )}
-
-                  {project.link && (
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-700 hover:text-lavender-700 transition-colors p-1"
-                      whileHover="hover"
-                      variants={iconVariants}
-                    >
-                      <FaExternalLinkAlt size={18} />
-                    </motion.a>
-                  )}
-                </div>
               </motion.div>
             </div>
           </motion.div>

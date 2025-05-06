@@ -2,26 +2,26 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { personalInfo } from '../../data/personal-info';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
+import { useLocalizedData } from '@/utils/language';
 
 export default function Hero() {
   // 状态控制设计辅助线的显示
   const [showDesignGuides, setShowDesignGuides] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [isFading] = useState(false);
+  const { personalInfo: localizedInfo, language } = useLocalizedData();
 
-
-  // 使用ref获取实际元素位置
-  const sectionRef = useRef(null);
-  const h1Ref = useRef(null);
-  const h2Ref = useRef(null);
-  const pRef = useRef(null);
-  const btnGroupRef = useRef(null);
-  const socialRef = useRef(null);
-  const imageRef = useRef(null);
+  // 使用ref获取实际元素位置，添加正确的类型
+  const sectionRef = useRef<HTMLElement>(null);
+  const h1Ref = useRef<HTMLHeadingElement>(null);
+  const h2Ref = useRef<HTMLHeadingElement>(null);
+  const pRef = useRef<HTMLParagraphElement>(null);
+  const btnGroupRef = useRef<HTMLDivElement>(null);
+  const socialRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!hasShown) {
@@ -64,6 +64,42 @@ export default function Hero() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [showDesignGuides]);
+
+  // 监听语言变化，更新辅助线位置
+  useEffect(() => {
+    if (showDesignGuides) {
+      // 重新计算辅助线位置
+      const updateGuides = () => {
+        if (h1Ref.current) {
+          const h1Rect = h1Ref.current.getBoundingClientRect();
+          const h1Guide = document.querySelector('.h1-guide') as HTMLElement;
+          if (h1Guide) {
+            h1Guide.style.width = `${h1Rect.width + 8}px`;
+            h1Guide.style.height = `${h1Rect.height + 8}px`;
+          }
+        }
+        if (h2Ref.current) {
+          const h2Rect = h2Ref.current.getBoundingClientRect();
+          const h2Guide = document.querySelector('.h2-guide') as HTMLElement;
+          if (h2Guide) {
+            h2Guide.style.width = `${h2Rect.width + 8}px`;
+            h2Guide.style.height = `${h2Rect.height + 8}px`;
+          }
+        }
+        if (pRef.current) {
+          const pRect = pRef.current.getBoundingClientRect();
+          const pGuide = document.querySelector('.p-guide') as HTMLElement;
+          if (pGuide) {
+            pGuide.style.width = `${pRect.width + 8}px`;
+            pGuide.style.height = `${pRect.height + 8}px`;
+          }
+        }
+      };
+
+      // 使用 requestAnimationFrame 确保在下一帧更新
+      requestAnimationFrame(updateGuides);
+    }
+  }, [language, showDesignGuides]);
 
   const getIconComponent = (icon: string) => {
     switch (icon) {
@@ -232,22 +268,14 @@ const designGuideVariants = {
             <motion.div
               className="container mx-auto px-4 absolute inset-0 pt-20 pb-16 flex items-center pointer-events-none z-10"
               initial="hidden"
-              animate="visible"// 根据 isFading 动态设置动画
+              animate="visible"
               exit="exit"
               variants={designGuideVariants}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full h-full">
                 {/* 双栏布局标记 */}
-                <div className="border-r border-dashed border-lavender-500/30 relative h-full hidden md:block">
-                  {/* <div className="absolute top-1/2 right-6 -translate-y-1/2 border border-lavender-500/30 rounded-full w-8 h-8 flex items-center justify-center">
-                    <span className="text-xs text-lavender-500/70 font-mono">50%</span>
-                  </div> */}
-                </div>
-                <div className="border-l border-dashed border-lavender-500/30 relative h-full hidden md:block">
-                  {/* <div className="absolute top-1/2 left-6 -translate-y-1/2 border border-lavender-500/30 rounded-full w-8 h-8 flex items-center justify-center">
-                    <span className="text-xs text-lavender-500/70 font-mono">50%</span>
-                  </div> */}
-                </div>
+                <div className="border-r border-dashed border-lavender-500/30 relative h-full hidden md:block" />
+                <div className="border-l border-dashed border-lavender-500/30 relative h-full hidden md:block" />
               </div>
             </motion.div>
 
@@ -255,18 +283,18 @@ const designGuideVariants = {
             <motion.div
               className="fixed inset-0 z-0 pointer-events-none"
               initial="hidden"
-              animate="visible"// 根据 isFading 动态设置动画
+              animate="visible"
               exit="exit"
               variants={designGuideVariants}
             >
               {/* 顶部内边距 */}
-              <div className="absolute top-0 left-1/2 h-20 w-[1px] bg-lavender-500/40"></div>
+              <div className="absolute top-0 left-1/2 h-20 w-[1px] bg-lavender-500/40" />
               <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-[10px] text-lavender-500/70 font-mono whitespace-nowrap">
                 pt-20
               </div>
 
               {/* 底部内边距 */}
-              <div className="absolute bottom-0 left-1/2 h-16 w-[1px] bg-lavender-500/40"></div>
+              <div className="absolute bottom-0 left-1/2 h-16 w-[1px] bg-lavender-500/40" />
               <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-[10px] text-lavender-500/70 font-mono whitespace-nowrap">
                 pb-16
               </div>
@@ -276,7 +304,7 @@ const designGuideVariants = {
             <motion.div
               className="fixed bottom-6 right-6 px-3 py-1.5 bg-white/20 border border-lavender-300/30 rounded text-xs text-lavender-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
               initial="hidden"
-              animate="visible"// 根据 isFading 动态设置动画
+              animate="visible"
               exit="exit"
               variants={designGuideVariants}
             >
@@ -287,7 +315,7 @@ const designGuideVariants = {
             <motion.div
               className="fixed top-6 right-6 px-3 py-1.5 bg-white/20 border border-lavender-300/30 rounded text-xs text-lavender-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
               initial="hidden"
-              animate="visible"// 根据 isFading 动态设置动画
+              animate="visible"
               exit="exit"
               variants={designGuideVariants}
             >
@@ -298,7 +326,7 @@ const designGuideVariants = {
             <motion.div
               className="fixed top-1/2 transform -translate-y-1/2 left-2 px-2 py-1 bg-white/20 border-l-2 border-lavender-500/40 text-xs text-lavender-700/80 font-medium z-20 pointer-events-none"
               initial="hidden"
-              animate="visible"// 根据 isFading 动态设置动画
+              animate="visible"
               exit="exit"
               variants={designGuideVariants}
             >
@@ -309,22 +337,22 @@ const designGuideVariants = {
             <motion.div
               className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
               initial="hidden"
-              animate="visible"// 根据 isFading 动态设置动画
+              animate="visible"
               exit="exit"
               variants={designGuideVariants}
             >
-              <div className="w-full h-[1px] bg-lavender-500/15"></div>
+              <div className="w-full h-[1px] bg-lavender-500/15" />
             </motion.div>
 
             {/* 滚动提示 */}
             <motion.div
               className="fixed bottom-20 left-1/2 transform -translate-x-1/2 px-3 py-1.5 bg-white/20 border border-lavender-300/30 rounded text-xs text-lavender-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
               initial="hidden"
-              animate="visible"// 根据 isFading 动态设置动画
+              animate="visible"
               exit="exit"
               variants={designGuideVariants}
             >
-              Scroll to hide guides
+              {language === 'en' ? "Scroll to hide guides" : "滚动隐藏辅助线"}
             </motion.div>
           </>
         )}
@@ -341,16 +369,16 @@ const designGuideVariants = {
                 custom={0}
                 variants={textVariants}
                 initial="hidden"
-                animate="visible"// 根据 isFading 动态设置动画
+                animate="visible"
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 inline-block"
               >
-                Hi, I'm{" "}
+                {language === 'en' ? "Hi, I'm" : "你好，我是"}{" "}
                 <span className="bg-gradient-to-r from-lavender-700 to-purple-600 text-transparent bg-clip-text">
-                  {personalInfo.name}
+                  {localizedInfo.name}
                 </span>
               </motion.h1>
 
-              {/* 标题辅助线 - 直接附加在标题元素上 */}
+              {/* 标题辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
@@ -358,6 +386,10 @@ const designGuideVariants = {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
+                  style={{
+                    width: h1Ref.current ? h1Ref.current.offsetWidth + 8 : 'auto',
+                    height: h1Ref.current ? h1Ref.current.offsetHeight + 8 : 'auto'
+                  }}
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">h1</div>
                   <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-4</div>
@@ -373,13 +405,13 @@ const designGuideVariants = {
                 custom={1}
                 variants={textVariants}
                 initial="hidden"
-                animate="visible"// 根据 isFading 动态设置动画
+                animate="visible"
                 className="text-2xl md:text-3xl text-lavender-700 font-medium mb-6"
               >
-                {personalInfo.title}
+                {localizedInfo.title}
               </motion.h2>
 
-              {/* 副标题辅助线 */}
+              {/* 副标题辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
@@ -387,6 +419,10 @@ const designGuideVariants = {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
+                  style={{
+                    width: h2Ref.current ? h2Ref.current.offsetWidth + 8 : 'auto',
+                    height: h2Ref.current ? h2Ref.current.offsetHeight + 8 : 'auto'
+                  }}
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">h2</div>
                   <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-6</div>
@@ -402,13 +438,13 @@ const designGuideVariants = {
                 custom={2}
                 variants={textVariants}
                 initial="hidden"
-                animate="visible"// 根据 isFading 动态设置动画
+                animate="visible"
                 className="text-lg text-gray-700 mb-8 max-w-lg"
               >
-                {personalInfo.bio}
+                {localizedInfo.bio}
               </motion.p>
 
-              {/* 段落辅助线 */}
+              {/* 段落辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
               {showDesignGuides && (
                 <motion.div
                   className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
@@ -416,6 +452,10 @@ const designGuideVariants = {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
+                  style={{
+                    width: pRef.current ? pRef.current.offsetWidth + 8 : 'auto',
+                    height: pRef.current ? pRef.current.offsetHeight + 8 : 'auto'
+                  }}
                 >
                   <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">p</div>
                   <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-8</div>
@@ -431,7 +471,7 @@ const designGuideVariants = {
                 className="flex flex-wrap gap-4 mb-8"
                 variants={buttonVariants}
                 initial="hidden"
-                animate={isFading ? "exit" : "visible"} // 根据 isFading 动态设置动画
+                animate={isFading ? "exit" : "visible"}
               >
                 <motion.div
                   whileHover="hover"
@@ -442,24 +482,24 @@ const designGuideVariants = {
                     href="/contact"
                     className="px-6 py-3 bg-lavender-700 text-white rounded-md transition-colors relative overflow-hidden group"
                   >
-                    <span className="relative z-10">Get in Touch</span>
+                    <span className="relative z-10">{language === 'en' ? "Get in Touch" : "联系我"}</span>
                     <span className="absolute inset-0 bg-lavender-700 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 rounded-md"></span>
                   </Link>
                 </motion.div>
 
-                {personalInfo.resume && (
+                {localizedInfo.resume && (
                   <motion.div
                     whileHover="hover"
                     whileTap="tap"
                     variants={buttonVariants}
                   >
                     <a
-                      href={personalInfo.resume}
+                      href={localizedInfo.resume}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-6 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition-all relative overflow-hidden group"
                     >
-                      <span className="relative z-10">View Resume</span>
+                      <span className="relative z-10">{language === 'en' ? "View Resume" : "查看简历"}</span>
                       <span className="absolute inset-0 bg-gray-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 rounded-md"></span>
                     </a>
                   </motion.div>
@@ -492,15 +532,15 @@ const designGuideVariants = {
                 className="flex space-x-4"
                 variants={socialVariants}
                 initial="hidden"
-                animate={isFading ? "exit" : "visible"} // 根据 isFading 动态设置动画
+                animate={isFading ? "exit" : "visible"}
               >
-                {personalInfo.socialLinks.map((link) => (
+                {localizedInfo.socialLinks.map((link) => (
                   <motion.a
                     key={link.platform}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-gray-700 hover:text-lavender-700 transition-colors"
+                    className="p-2 text-gray-700 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors"
                     variants={socialItemVariants}
                     whileHover="hover"
                   >
@@ -522,7 +562,7 @@ const designGuideVariants = {
                   <div className="absolute -top-4 left-0 text-[10px] text-lavender-500/70 font-mono">space-x-4</div>
                   {/* 社交图标间距标记 */}
                   <div className="absolute inset-0">
-                    {personalInfo.socialLinks.map((_, i) => (
+                    {localizedInfo.socialLinks.map((_, i) => (
                       <div
                         key={i}
                         className="absolute top-0 bottom-0 border-r border-dashed border-lavender-500/30"
@@ -553,8 +593,8 @@ const designGuideVariants = {
                 }}
               >
                 <Image
-                  src={personalInfo.avatar}
-                  alt={personalInfo.name}
+                  src={localizedInfo.avatar}
+                  alt={localizedInfo.name}
                   fill
                   sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"

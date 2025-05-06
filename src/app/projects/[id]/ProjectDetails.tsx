@@ -2,12 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaGithub, FaExternalLinkAlt, FaArrowLeft } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { Project } from '@/types/project';
-
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface ProjectDetailsProps {
   project: Project; // 使用正确的项目类型
@@ -21,10 +20,13 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
   // 动画变体
   const fadeIn = {
-    hidden: { opacity: 0 },
-    visible: { 
+    hidden: { opacity: 0, y: 20 },
+    visible: {
       opacity: 1,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
     }
   };
 
@@ -42,8 +44,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.1
       }
     }
   };
@@ -57,13 +58,13 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       >
         <Link 
           href="/projects"
-          className="inline-flex items-center text-lavender-700 hover:text-lavender-700 mb-8 transition-colors relative group"
+          className="inline-flex items-center text-lavender-700 dark:text-lavender-400 hover:text-lavender-700 dark:hover:text-lavender-300 mb-8 transition-colors relative group"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-300">
             <FaArrowLeft className="mr-2" />
           </span>
           <span>Back to Projects</span>
-          <span className="absolute -bottom-1 left-5 w-0 h-0.5 bg-lavender-700 group-hover:w-[calc(100%-20px)] transition-all duration-300"></span>
+          <span className="absolute -bottom-1 left-5 w-0 h-0.5 bg-lavender-700 dark:bg-lavender-500 group-hover:w-[calc(100%-20px)] transition-all duration-300"></span>
         </Link>
       </motion.div>
       
@@ -72,7 +73,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold mb-4"
+          className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
         >
           {project.title}
         </motion.h1>
@@ -88,50 +89,11 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               key={skill}
               variants={fadeIn}
               transition={{ delay: 0.1 + index * 0.05 }}
-              className="px-3 py-1 bg-lavender-300 text-black-700 text-sm rounded-full hover:bg-lavender-200 transition-colors"
+              className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 text-sm rounded-full hover:bg-lavender-200 dark:hover:bg-lavender-800 transition-colors"
             >
               {skill}
             </motion.span>
           ))}
-        </motion.div>
-        
-        <motion.div 
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="flex items-center space-x-4 mb-8"
-        >
-          {project.github && (
-            <motion.a 
-              variants={fadeIn}
-              href={project.github} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-gray-700 hover:text-lavender-700 transition-colors group"
-            >
-              <FaGithub size={20} className="mr-2 group-hover:scale-110 transition-transform duration-300" /> 
-              <span className="relative">
-                GitHub Repository
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-lavender-700 group-hover:w-full transition-all duration-300"></span>
-              </span>
-            </motion.a>
-          )}
-          
-          {project.link && (
-            <motion.a 
-              variants={fadeIn}
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-gray-700 hover:text-lavender-700 transition-colors group"
-            >
-              <FaExternalLinkAlt size={18} className="mr-2 group-hover:scale-110 transition-transform duration-300" /> 
-              <span className="relative">
-                Live Demo
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-lavender-700 group-hover:w-full transition-all duration-300"></span>
-              </span>
-            </motion.a>
-          )}
         </motion.div>
         
         <motion.div 
@@ -154,7 +116,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="prose max-w-none mb-12"
+          className="prose dark:prose-invert max-w-none mb-12"
         >
           <motion.h2 variants={fadeInUp}>Overview</motion.h2>
           <motion.p variants={fadeInUp}>{project.description}</motion.p>

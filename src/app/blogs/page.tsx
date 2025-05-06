@@ -32,7 +32,7 @@ export default function BlogsPage() {
   
   return (
     <div className="pt-20 pb-10">
-      <h1 className="text-3xl font-bold mb-12 text-center">My Blogs</h1>
+      <h1 className="text-3xl font-bold mb-12 text-center text-gray-900 dark:text-white">My Blogs</h1>
       
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto space-y-8">
@@ -40,7 +40,7 @@ export default function BlogsPage() {
             // 每个卡片独立控制其动画
             <motion.div
               key={blog.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer"
+              className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer"
               variants={cardVariants}
               initial="hidden"
               // 使用 whileInView 实现滚动触发
@@ -58,8 +58,8 @@ export default function BlogsPage() {
               onClick={() => router.push(`/blogs/${blog.id}`)}
             >
               <div className="p-6">
-                <h2 className="text-xl font-bold mb-2 text-gray-900">{blog.title}</h2>
-                <p className="text-gray-600 mb-4 line-clamp-2">{blog.description}</p>
+                <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{blog.title}</h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{blog.description}</p>
               </div>
             </motion.div>
           ))}

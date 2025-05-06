@@ -1,9 +1,13 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --primary: #ff7f00;
+  --foreground: #000000;
+  --primary: #0070f3;
+  --secondary: #6b7280;
+  --accent: #f3f4f6;
   --primary-gradient: linear-gradient(45deg, #ff7f00, #ffa64d);
 }
 
@@ -16,22 +20,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #ff8c42;
+    --background: #1a1a1a;
+    --foreground: #ffffff;
+    --primary: #3b82f6;
+    --secondary: #9ca3af;
+    --accent: #2d2d2d;
     --primary-gradient: linear-gradient(45deg, #ff8c42, #ffb366);
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   :root {
@@ -126,4 +129,87 @@ html {
       transform: scale(1);
     }
   }
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+  --primary: #3b82f6;
+  --secondary: #9ca3af;
+  --accent: #2d2d2d;
+}
+
+/* 添加全局暗黑模式样式 */
+.dark {
+  @apply bg-gray-900 text-white;
+}
+
+.dark * {
+  @apply border-gray-700;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  @apply text-white;
+}
+
+.dark p, .dark span, .dark div {
+  @apply text-gray-300;
+}
+
+.dark a {
+  @apply text-blue-400 hover:text-blue-300;
+}
+
+.dark button {
+  @apply bg-gray-800 text-white hover:bg-gray-700;
+}
+
+.dark input, .dark textarea, .dark select {
+  @apply bg-gray-800 text-white border-gray-700;
+}
+
+/* 自定义暗黑模式样式 */
+.dark .prose {
+  @apply text-gray-300;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  @apply text-white;
+}
+
+.dark .prose a {
+  @apply text-blue-400 hover:text-blue-300;
+}
+
+.dark .prose strong {
+  @apply text-white;
+}
+
+.dark .prose blockquote {
+  @apply border-gray-700 text-gray-300;
+}
+
+.dark .prose code {
+  @apply bg-gray-800 text-gray-300;
+}
+
+.dark .prose pre {
+  @apply bg-gray-800 text-gray-300;
+}
+
+.dark .prose hr {
+  @apply border-gray-700;
+}
+
+.dark .prose ul li::before {
+  @apply bg-gray-600;
+}
+
+.dark .prose ol li::before {
+  @apply text-gray-400;
 }

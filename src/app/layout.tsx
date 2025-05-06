@@ -5,6 +5,8 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { personalInfo } from '@/data/personal-info';
 import PageTransition from '@/components/animations/PageTransition';
+import { ThemeProvider } from "@/context/ThemeContext";
+import { LanguageProvider } from "../contexts/LanguageContext";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,15 +21,19 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-      <PageTransition>
-        <main>
-          {children}
-        </main>
-      </PageTransition>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300`}>
+        <ThemeProvider>
+          <LanguageProvider>
+            <Header />
+            <PageTransition>
+              <main className="pt-16">
+                {children}
+              </main>
+            </PageTransition>
+            <Footer />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

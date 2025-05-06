@@ -1,11 +1,11 @@
 import { PersonalInfo } from '../types/personal-info';
 
-export const personalInfo: PersonalInfo = {
+export const personalInfoZh: PersonalInfo = {
   name: "David300",
-  title: "Full Stack Developer",
-  bio: "I am a technology enthusiast and full-stack developer skilled at integrating design, frontend, backend, and machine learning to create stunning web applications. I am committed to solving real-world problems with technology and constantly pursuing exceptional user experiences.",
+  title: "全栈开发工程师",
+  bio: "我是一名技术爱好者和全栈开发工程师，擅长将设计、前端、后端和机器学习整合在一起，创建出色的网络应用程序。我致力于用技术解决现实世界的问题，并不断追求卓越的用户体验。",
   avatar: "/images/profile.svg",
-  location: "China Beijing",
+  location: "中国北京",
   email: "xuanzhiweisw@gmail.com",
   phone: "+86 17358544801",
   socialLinks: [
@@ -26,4 +26,4 @@ export const personalInfo: PersonalInfo = {
     }
   ],
   resume: "/resume.pdf"
-};
+}; 
