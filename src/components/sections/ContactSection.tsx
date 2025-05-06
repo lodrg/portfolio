@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import { useLocalizedData } from '@/utils/language';
+import emailjs from '@emailjs/browser';
 
 const sectionText = {
   title: {
@@ -18,8 +20,8 @@ const sectionText = {
     zh: "姓名"
   },
   email: {
-    en: "Email",
-    zh: "邮箱"
+    en: "Your Email",
+    zh: "您的邮箱"
   },
   message: {
     en: "Message",
@@ -41,6 +43,12 @@ const sectionText = {
 
 export default function ContactSection() {
   const { personalInfo, language } = useLocalizedData();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState({
+    loading: false,
+    success: false,
+    error: false
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -62,6 +70,26 @@ export default function ContactSection() {
         ease: [0.22, 1, 0.36, 1]
       }
     }
+  };
+
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: false, error: false });
+
+    emailjs.sendForm(
+      'service_8prq67g',
+      'template_ul62pre',
+      e.currentTarget,
+      'y_t2R12Gq-NpAfxv7'
+    )
+      .then((result: { text: string }) => {
+        console.log('Success:', result.text);
+        setStatus({ loading: false, success: true, error: false });
+        formRef.current?.reset();
+      }, (error: { text: string }) => {
+        console.error('Error:', error.text);
+        setStatus({ loading: false, success: false, error: true });
+      });
   };
 
   return (
@@ -140,7 +168,7 @@ export default function ContactSection() {
           </motion.div>
 
           <motion.div variants={itemVariants}>
-            <form className="space-y-6">
+            <form ref={formRef} className="space-y-6" onSubmit={sendEmail}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                   {sectionText.name[language]}
@@ -182,12 +210,27 @@ export default function ContactSection() {
 
               <motion.button
                 type="submit"
-                className="w-full px-6 py-3 bg-lavender-700 text-white rounded-lg hover:bg-lavender-800 transition-colors"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={status.loading}
+                className={`w-full px-6 py-3 bg-lavender-700 text-white rounded-lg hover:bg-lavender-800 transition-colors ${
+                  status.loading ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                whileHover={{ scale: status.loading ? 1 : 1.02 }}
+                whileTap={{ scale: status.loading ? 1 : 0.98 }}
               >
-                {sectionText.send[language]}
+                {status.loading ? 'Sending...' : sectionText.send[language]}
               </motion.button>
+
+              {status.success && (
+                <p className="text-green-500 text-sm text-center">
+                  Message sent successfully!
+                </p>
+              )}
+
+              {status.error && (
+                <p className="text-red-500 text-sm text-center">
+                  An error occurred. Please try again later.
+                </p>
+              )}
             </form>
           </motion.div>
         </motion.div>

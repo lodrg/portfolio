@@ -36,45 +36,39 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900 text-white py-10">
+    <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="text-xl text-lavender-100 dark:text-lavender-200 font-bold mb-4">{personalInfo.name}</h3>
-            <p className="text-lavender-100 dark:text-lavender-200 mb-4">{personalInfo.title}</p>
-            <p className="text-lavender-100 dark:text-lavender-200">{personalInfo.bio}</p>
-          </div>
-          
-          <div>
-            <h3 className="text-xl text-lavender-100 dark:text-lavender-200 font-bold mb-4">{footerLinks.quickLinks[language]}</h3>
-            <ul className="space-y-2">
-              <li><Link href="/" className="text-lavender-200 dark:text-lavender-300 hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/about" className="text-lavender-200 dark:text-lavender-300 hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/skills" className="text-lavender-200 dark:text-lavender-300 hover:text-white transition-colors">Skills</Link></li>
-              <li><Link href="/projects" className="text-lavender-200 dark:text-lavender-300 hover:text-white transition-colors">Projects</Link></li>
-              <li><Link href="/contact" className="text-lavender-200 dark:text-lavender-300 hover:text-white transition-colors">Contact</Link></li>
+            <h3 className="text-sm font-medium text-white/90 mb-3">{footerLinks.quickLinks[language]}</h3>
+            <ul className="space-y-1.5">
+              <li><Link href="/" className="text-xs text-white/70 hover:text-white transition-colors">Home</Link></li>
+              <li><Link href="/about" className="text-xs text-white/70 hover:text-white transition-colors">About</Link></li>
+              <li><Link href="/skills" className="text-xs text-white/70 hover:text-white transition-colors">Skills</Link></li>
+              <li><Link href="/projects" className="text-xs text-white/70 hover:text-white transition-colors">Projects</Link></li>
+              <li><Link href="/contact" className="text-xs text-white/70 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-xl text-lavender-100 dark:text-lavender-200 font-bold mb-4">{footerLinks.connect[language]}</h3>
-            <div className="flex space-x-4 mb-4">
+            <h3 className="text-sm font-medium text-white/90 mb-3">{footerLinks.connect[language]}</h3>
+            <div className="flex space-x-3 mb-3">
               {personalInfo.socialLinks.map((link) => (
                 <a 
                   key={link.platform} 
                   href={link.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-lavender-300 dark:text-lavender-400 hover:text-white transition-colors"
+                  className="text-white/70 hover:text-white transition-colors"
                 >
                   {getIconComponent(link.icon)}
                 </a>
               ))}
             </div>
-            <p className="text-lavender-100 dark:text-lavender-200">
+            <p className="text-xs text-white/70">
               <a 
                 href={`mailto:${personalInfo.email}`} 
-                className="text-lavender-100 dark:text-lavender-200 hover:text-white transition-colors no-underline"
+                className="text-white/70 hover:text-white transition-colors no-underline"
               >
                 {personalInfo.email}
               </a>
@@ -82,8 +76,8 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-lavender-800 dark:border-lavender-700 mt-8 pt-8 text-center text-gray-400 dark:text-gray-500">
-          <p>&copy; {new Date().getFullYear()} {personalInfo.name}. {footerLinks.rights[language]}</p>
+        <div className="border-t border-white/5 mt-6 pt-6 text-center">
+          <p className="text-xs text-white/60">&copy; {new Date().getFullYear()} {personalInfo.name}. {footerLinks.rights[language]}</p>
         </div>
       </div>
     </footer>

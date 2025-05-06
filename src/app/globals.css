@@ -157,7 +157,7 @@ html {
 }
 
 .dark a {
-  @apply text-blue-400 hover:text-blue-300;
+  @apply text-white/80 hover:text-white;
 }
 
 .dark button {
@@ -183,7 +183,7 @@ html {
 }
 
 .dark .prose a {
-  @apply text-blue-400 hover:text-blue-300;
+  @apply text-white/80 hover:text-white;
 }
 
 .dark .prose strong {

@@ -153,6 +153,57 @@ export default function Header() {
         {/* Mobile Menu Button and Theme Toggle */}
         <div className="md:hidden flex items-center space-x-4">
           <ThemeToggle />
+          {/* 移动端语言切换按钮 */}
+          <div className="relative flex items-center">
+            <motion.div
+              className="relative flex items-center bg-gray-100 dark:bg-gray-800/30 rounded-full p-0.5 shadow-sm"
+              initial={false}
+              animate={{
+                backgroundColor: scrolled 
+                  ? 'rgba(243, 244, 246, 0.95)' 
+                  : 'rgba(243, 244, 246, 0.9)',
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.button
+                className={`relative z-10 w-10 py-1 text-sm font-medium rounded-full transition-colors ${
+                  language === 'en'
+                    ? 'text-gray-900 dark:text-white'
+                    : 'text-gray-600 dark:text-gray-400'
+                }`}
+                onClick={() => language !== 'en' && toggleLanguage()}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                EN
+              </motion.button>
+              <motion.button
+                className={`relative z-10 w-10 py-1 text-sm font-medium rounded-full transition-colors ${
+                  language === 'zh'
+                    ? 'text-gray-900 dark:text-white'
+                    : 'text-gray-600 dark:text-gray-400'
+                }`}
+                onClick={() => language !== 'zh' && toggleLanguage()}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                中
+              </motion.button>
+              <motion.div
+                className="absolute inset-0 bg-white/90 dark:bg-gray-700/50 rounded-full shadow-sm"
+                layout
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 30
+                }}
+                style={{
+                  width: '50%',
+                  left: language === 'en' ? '0%' : '50%'
+                }}
+              />
+            </motion.div>
+          </div>
           <button 
             className="text-gray-700 dark:text-gray-300"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
