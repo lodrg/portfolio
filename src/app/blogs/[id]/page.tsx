@@ -2,14 +2,8 @@ import { getAllPostIds, getPostData } from '@/lib/markdown';
 import { Metadata } from 'next';
 import BlogPost from '@/app/blogs/[id]/BlogPost';
 
-type Props = {
-  params: Promise<{
-    id: string;
-  }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-};
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const params = await props.params;
   const post = await getPostData(params.id);
   return {
@@ -23,7 +17,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function BlogPostPage(props: Props) {
+export default async function BlogPostPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const post = await getPostData(params.id);
   return <BlogPost post={post} />;
