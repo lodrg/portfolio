@@ -25,13 +25,13 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300`}>
         <ThemeProvider>
           <LanguageProvider>
-            <Header />
-            <PageTransition>
+        <Header />
+      <PageTransition>
               <main className="pt-16">
-                {children}
-              </main>
-            </PageTransition>
-            <Footer />
+          {children}
+        </main>
+      </PageTransition>
+        <Footer />
           </LanguageProvider>
         </ThemeProvider>
       </body>

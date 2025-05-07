@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { useLocalizedData } from '@/utils/language';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalizedContent } from '@/hooks/useLocalizedContent';
 
 const footerLinks = {
   quickLinks: {
@@ -19,21 +20,22 @@ const footerLinks = {
   }
 };
 
-export default function Footer() {
-  const { personalInfo, language } = useLocalizedData();
+function getIconComponent(icon: string) {
+  switch (icon) {
+    case 'github':
+      return <FaGithub className="w-5 h-5" />;
+    case 'linkedin':
+      return <FaLinkedin className="w-5 h-5" />;
+    case 'twitter':
+      return <FaTwitter className="w-5 h-5" />;
+    default:
+      return null;
+  }
+}
 
-  const getIconComponent = (icon: string) => {
-    switch (icon) {
-      case 'github':
-        return <FaGithub size={20} />;
-      case 'linkedin':
-        return <FaLinkedin size={20} />;
-      case 'twitter':
-        return <FaTwitter size={20} />;
-      default:
-        return null;
-    }
-  };
+export default function Footer() {
+  const { language } = useLanguage();
+  const { personalInfo } = useLocalizedContent();
 
   return (
     <footer className="bg-gray-900 text-white py-8">

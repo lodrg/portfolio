@@ -51,7 +51,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 bg-white dark:bg-gray-800">
       <div className="container mx-auto px-4">
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -65,7 +65,7 @@ export default function ProjectsSection() {
             {sectionText.subtitle[language]}
           </p>
         </motion.div>
-
+        
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -96,8 +96,8 @@ export default function ProjectsSection() {
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.skills.slice(0, 3).map((skill) => (
-                    <span
-                      key={skill}
+                    <span 
+                      key={skill} 
                       className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm"
                     >
                       {skill}

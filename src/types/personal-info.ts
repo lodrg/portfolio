@@ -14,4 +14,9 @@ export interface SocialLink {
     phone: string;
     socialLinks: SocialLink[];
     resume?: string;
+    journey: {
+      title: string;
+      period: string;
+      description: string;
+    }[];
   }

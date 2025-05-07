@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle from '../ThemeToggle';
-import { useLocalizedData } from '@/utils/language';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type NavLink = {
@@ -29,8 +28,7 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { personalInfo, language } = useLocalizedData();
-  const { toggleLanguage } = useLanguage();
+  const { language, toggleLanguage } = useLanguage();
 
   // 监听滚动事件，改变 header 样式
   useEffect(() => {
@@ -49,6 +47,12 @@ export default function Header() {
     };
   }, []);
 
+  const handleLanguageToggle = (targetLang: 'en' | 'zh') => {
+    if (language !== targetLang) {
+      toggleLanguage();
+    }
+  };
+
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -59,7 +63,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
-          {personalInfo.name}
+          Portfolio
         </Link>
 
         {/* Desktop Navigation */}
@@ -113,7 +117,7 @@ export default function Header() {
                       ? 'text-gray-900 dark:text-white'
                       : 'text-gray-600 dark:text-gray-400'
                   }`}
-                  onClick={() => language !== 'en' && toggleLanguage()}
+                  onClick={() => handleLanguageToggle('en')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -125,7 +129,7 @@ export default function Header() {
                       ? 'text-gray-900 dark:text-white'
                       : 'text-gray-600 dark:text-gray-400'
                   }`}
-                  onClick={() => language !== 'zh' && toggleLanguage()}
+                  onClick={() => handleLanguageToggle('zh')}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -170,7 +174,7 @@ export default function Header() {
                     ? 'text-gray-900 dark:text-white'
                     : 'text-gray-600 dark:text-gray-400'
                 }`}
-                onClick={() => language !== 'en' && toggleLanguage()}
+                onClick={() => handleLanguageToggle('en')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -182,7 +186,7 @@ export default function Header() {
                     ? 'text-gray-900 dark:text-white'
                     : 'text-gray-600 dark:text-gray-400'
                 }`}
-                onClick={() => language !== 'zh' && toggleLanguage()}
+                onClick={() => handleLanguageToggle('zh')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

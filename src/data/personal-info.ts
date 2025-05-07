@@ -25,5 +25,22 @@ export const personalInfo: PersonalInfo = {
       icon: "twitter"
     }
   ],
-  resume: "/resume.pdf"
+  resume: "/resume.pdf",
+  journey: [
+    {
+      title: "Senior Full Stack Developer",
+      period: "2022 - Present",
+      description: "Leading the development of enterprise-level web applications using React, Node.js, and cloud technologies."
+    },
+    {
+      title: "Full Stack Developer",
+      period: "2020 - 2022",
+      description: "Developed and maintained multiple web applications using React, Next.js, and Node.js."
+    },
+    {
+      title: "Frontend Developer",
+      period: "2018 - 2020",
+      description: "Created responsive and interactive user interfaces using React and modern CSS frameworks."
+    }
+  ]
 };

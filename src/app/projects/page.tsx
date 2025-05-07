@@ -2,11 +2,27 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { projects } from '@/data/projects';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalizedContent } from '@/hooks/useLocalizedContent';
+
+const sectionText = {
+  title: {
+    en: "Projects",
+    zh: "项目"
+  },
+  subtitle: {
+    en: "A showcase of my recent work and personal projects.",
+    zh: "展示我最近的工作和个人项目。"
+  },
+  viewDetails: {
+    en: "View Details",
+    zh: "查看详情"
+  }
+};
 
 export default function ProjectsPage() {
   // 添加主要动画效果变体
@@ -87,6 +103,8 @@ export default function ProjectsPage() {
   // 创建参考以检测滚动视图
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-100px 0px" });
+  const { language } = useLanguage();
+  const { projects } = useLocalizedContent();
 
   return (
     <div className="container mx-auto px-4 py-20 pt-32">
@@ -98,7 +116,7 @@ export default function ProjectsPage() {
         className="max-w-4xl"
       >
         <h1 className="text-3xl md:text-4xl font-bold mb-8 relative text-gray-900 dark:text-white">
-          My Projects
+          {sectionText.title[language]}
           <motion.span
             className="absolute -bottom-2 left-0 h-1 bg-lavender-700 dark:bg-lavender-500"
             initial={{ width: 0 }}
@@ -113,7 +131,7 @@ export default function ProjectsPage() {
           animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          Here's a collection of my work showcasing my skills in design, frontend, backend, and machine learning. Each project represents a unique challenge and learning opportunity.
+          {sectionText.subtitle[language]}
         </motion.p>
       </motion.div>
 
@@ -202,7 +220,7 @@ export default function ProjectsPage() {
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    View Details
+                    {sectionText.viewDetails[language]}
                     <motion.span
                       className="inline-block ml-1"
                       initial={{ x: 0 }}

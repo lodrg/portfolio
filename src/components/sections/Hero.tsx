@@ -5,14 +5,22 @@ import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-import { useLocalizedData } from '@/utils/language';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalizedContent } from '@/hooks/useLocalizedContent';
+
+interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
+}
 
 export default function Hero() {
   // 状态控制设计辅助线的显示
   const [showDesignGuides, setShowDesignGuides] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [isFading] = useState(false);
-  const { personalInfo: localizedInfo, language } = useLocalizedData();
+  const { language } = useLanguage();
+  const { personalInfo } = useLocalizedContent();
 
   // 使用ref获取实际元素位置，添加正确的类型
   const sectionRef = useRef<HTMLElement>(null);
@@ -374,7 +382,7 @@ const designGuideVariants = {
               >
                 {language === 'en' ? "Hi, I'm" : "你好，我是"}{" "}
                 <span className="bg-gradient-to-r from-lavender-700 to-purple-600 text-transparent bg-clip-text">
-                  {localizedInfo.name}
+                  {personalInfo.name}
                 </span>
               </motion.h1>
 
@@ -408,7 +416,7 @@ const designGuideVariants = {
                 animate="visible"
                 className="text-2xl md:text-3xl text-lavender-700 font-medium mb-6"
               >
-                {localizedInfo.title}
+                {personalInfo.title}
               </motion.h2>
 
               {/* 副标题辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
@@ -441,7 +449,7 @@ const designGuideVariants = {
                 animate="visible"
                 className="text-lg text-gray-700 mb-8 max-w-lg"
               >
-                {localizedInfo.bio}
+                {personalInfo.bio}
               </motion.p>
 
               {/* 段落辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
@@ -487,14 +495,14 @@ const designGuideVariants = {
                   </Link>
                 </motion.div>
 
-                {localizedInfo.resume && (
+                {personalInfo.resume && (
                   <motion.div
                     whileHover="hover"
                     whileTap="tap"
                     variants={buttonVariants}
                   >
                     <a
-                      href={localizedInfo.resume}
+                      href={personalInfo.resume}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-6 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition-all relative overflow-hidden group"
@@ -534,7 +542,7 @@ const designGuideVariants = {
                 initial="hidden"
                 animate={isFading ? "exit" : "visible"}
               >
-                {localizedInfo.socialLinks.map((link) => (
+                {personalInfo.socialLinks.map((link: SocialLink) => (
                   <motion.a
                     key={link.platform}
                     href={link.url}
@@ -562,7 +570,7 @@ const designGuideVariants = {
                   <div className="absolute -top-4 left-0 text-[10px] text-lavender-500/70 font-mono">space-x-4</div>
                   {/* 社交图标间距标记 */}
                   <div className="absolute inset-0">
-                    {localizedInfo.socialLinks.map((_, i) => (
+                    {personalInfo.socialLinks.map((_: SocialLink, i: number) => (
                       <div
                         key={i}
                         className="absolute top-0 bottom-0 border-r border-dashed border-lavender-500/30"
@@ -593,8 +601,8 @@ const designGuideVariants = {
                 }}
               >
                 <Image
-                  src={localizedInfo.avatar}
-                  alt={localizedInfo.name}
+                  src={personalInfo.avatar}
+                  alt={personalInfo.name}
                   fill
                   sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
