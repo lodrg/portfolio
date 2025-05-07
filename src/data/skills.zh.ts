@@ -29,13 +29,13 @@ export const skillsZh: Skill[] = [
     technologies: ["Node.js", "Express", "MongoDB", "REST APIs"]
   },
   {
-    id: "backend-go",
-    name: "Go",
+    id: "backend-python",
+    name: "Python",
     category: "backend",
-    icon: "go",
-    proficiency: 4,
-    description: "使用 Go 语言开发高性能后端服务。拥有一个 Go 版本的数据库项目。",
-    technologies: ["Go", "Gin", "GORM", "PostgreSQL"]
+    icon: "python",
+    proficiency: 5,
+    description: "主要用于脚本编写和快速验证。自从 AI 兴起后，我使用 Python 的频率更高了，之前也使用 django 和 flask 写过一些后端。",
+    technologies: ["Python", "Django", "Flask", "FastAPI", "Pandas", "NumPy"]
   },
   {
     id: "backend-java",
@@ -56,13 +56,13 @@ export const skillsZh: Skill[] = [
     technologies: ["Flink", "Spark", "Kafka", "ClickHouse", "PostgreSQL", "MySQL"]
   },
   {
-    id: "backend-python",
-    name: "Python",
+    id: "backend-go",
+    name: "Go",
     category: "backend",
-    icon: "python",
-    proficiency: 5,
-    description: "主要用于脚本编写和快速验证。自从 AI 兴起后，我使用 Python 的频率更高了，之前也使用 django 和 flask 写过一些后端。",
-    technologies: ["Python", "Django", "Flask", "FastAPI", "Pandas", "NumPy"]
+    icon: "go",
+    proficiency: 4,
+    description: "使用 Go 语言开发高性能后端服务。拥有一个 Go 版本的数据库项目。",
+    technologies: ["Go", "Gin", "GORM", "PostgreSQL"]
   },
   {
     id: "ml-pytorch",
@@ -71,7 +71,7 @@ export const skillsZh: Skill[] = [
     icon: "pytorch",
     proficiency: 4,
     description: "实现各种应用的深度学习模型。实际上，我之前项目中使用的是 weka（Java 生态系统的机器学习解决方案）。",
-    technologies: ["PyTorch", "TensorFlow", "Weka", "scikit-learn", "OpenCV"]
+    technologies: ["PyTorch", "TensorFlow", "Weka", "scikit-learn"]
   },
   {
     id: "design-ui-ux",
@@ -80,7 +80,7 @@ export const skillsZh: Skill[] = [
     icon: "figma",
     proficiency: 5,
     description: "创建以用户为中心的设计，注重直观的界面和愉悦的体验。",
-    technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "原型设计"]
+    technologies: ["Figma", "Sketch","原型设计"]
   },
   // 添加更多技能...
 ]; 

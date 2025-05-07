@@ -20,6 +20,15 @@ export const skills: Skill[] = [
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
+    id: "design-ui-ux",
+    name: "UI/UX Design",
+    category: "design",
+    icon: "figma",
+    proficiency: 5,
+    description: "Creating user-centered designs with a focus on intuitive interfaces and delightful experiences.",
+    technologies: ["Figma", "Adobe XD", "Sketch"]
+  },
+  {
     id: "backend-node",
     name: "Node.js",
     category: "backend",
@@ -34,26 +43,8 @@ export const skills: Skill[] = [
     category: "backend",
     icon: "go",
     proficiency: 4,
-    description: "Developing high-performance backend services with Go. Have a go version DB.",
+    description: "Developing high-performance backend services with Go.",
     technologies: ["Go", "Gin", "GORM", "PostgreSQL"]
-  },
-  {
-    id: "backend-java",
-    name: "Java",
-    category: "backend",
-    icon: "java",
-    proficiency: 5,
-    description: "Developing high-performance backend services with Java ecosystem, like SSM SpringBoot. But I don't like it really.",
-    technologies: ["Java", "Spring Boot", "Spring MVC", "MyBatis"]
-  },
-  {
-    id: "bigdata-java",
-    name: "Bigdata",
-    category: "backend",
-    icon: "java",
-    proficiency: 5,
-    description: "Commonly used solutions for big data include flink spark as a distributed data processing framework, kafka as a distributed message queue, and many other mainstream databases like pgsql, mysql, clickhouse.",
-    technologies: ["Flink", "Spark", "Kafka", "ClickHouse", "PostgreSQL", "MySQL"]
   },
   {
     id: "backend-python",
@@ -61,26 +52,34 @@ export const skills: Skill[] = [
     category: "backend",
     icon: "python",
     proficiency: 5,
-    description: "Mainly use it for scripting and quick validation. I've been using python a lot more since AI came out, and I've written some backends in django and flask before..",
+    description: "Developing backend services and AI applications with Python.",
     technologies: ["Python", "Django", "Flask", "FastAPI", "Pandas", "NumPy"]
   },
   {
+    id: "backend-java",
+    name: "Java",
+    category: "backend",
+    icon: "java",
+    proficiency: 5,
+    description: "Developing enterprise applications with Java ecosystem.",
+    technologies: ["Java", "Spring Boot", "Spring MVC", "MyBatis"]
+  },
+  {
+    id: "bigdata-java",
+    name: "Big Data",
+    category: "backend",
+    icon: "java",
+    proficiency: 5,
+    description: "Building distributed data processing systems and data pipelines.",
+    technologies: ["Flink", "Spark", "Kafka", "ClickHouse", "PostgreSQL", "MySQL"]
+  },
+  {
     id: "ml-pytorch",
-    name: "PyTorch",
+    name: "Machine Learning",
     category: "ml",
     icon: "pytorch",
     proficiency: 4,
-    description: "Implementing deep learning models for various applications. In fact, the machine learning framework I used in my previous project was weka (a machine learning solution for the java ecosystem)",
-    technologies: ["PyTorch", "TensorFlow", "Weka", "scikit-learn", "OpenCV"]
-  },
-  {
-    id: "design-ui-ux",
-    name: "UI/UX Design",
-    category: "design",
-    icon: "figma",
-    proficiency: 5,
-    description: "Creating user-centered designs with a focus on intuitive interfaces and delightful experiences.",
-    technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Prototyping"]
-  },
-  // 添加更多技能...
+    description: "Implementing machine learning solutions for various applications.",
+    technologies: ["PyTorch", "TensorFlow", "Weka", "scikit-learn"]
+  }
 ];
