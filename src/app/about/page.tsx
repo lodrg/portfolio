@@ -5,6 +5,8 @@ import { personalInfo } from '@/data/personal-info';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useLocalizedData } from "@/utils/language";
+import Skills from "@/components/sections/SkillsSection";
 
 // 淡入和向上动画效果
 const fadeInUp = {
@@ -36,20 +38,21 @@ export default function AboutPage() {
   const journeyRef = useRef(null);
   const bioInView = useInView(bioRef, { once: true, margin: "0px 0px -100px 0px" });
   const journeyInView = useInView(journeyRef, { once: true, margin: "0px 0px -100px 0px" });
+  const { language } = useLocalizedData();
 
   return (
     <div className="container mx-auto px-4 py-20 pt-32">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.h1
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl md:text-4xl font-bold mb-6"
+          className="text-3xl md:text-4xl font-bold mb-12 text-center"
         >
-          About Me
+          {language === 'en' ? 'About Me' : '关于我'}
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10" ref={bioRef}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20" ref={bioRef}>
           <motion.div
             className="md:col-span-1"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -63,7 +66,7 @@ export default function AboutPage() {
               delay: 0.1
             }}
           >
-            <div className="rounded-lg overflow-hidden">
+            <div className="rounded-lg overflow-hidden shadow-lg">
               <Image
                 src={personalInfo.avatar}
                 alt={personalInfo.name}
@@ -88,7 +91,7 @@ export default function AboutPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: bioInView ? 1 : 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="text-xl text-lavender-700 mb-4"
+              className="text-xl text-lavender-700 mb-6"
             >
               {personalInfo.title}
             </motion.h3>
@@ -99,15 +102,15 @@ export default function AboutPage() {
               animate={bioInView ? "visible" : "hidden"}
               className="prose max-w-none"
             >
-              <motion.p variants={fadeInUp} className="mb-4">
+              <motion.p variants={fadeInUp} className="mb-6">
                 I'm a passionate full-stack developer with expertise in design, frontend, backend, and machine learning technologies. With a strong foundation in both creative and technical aspects of development, I bring a unique perspective to every project.
               </motion.p>
               
-              <motion.p variants={fadeInUp} className="mb-4">
+              <motion.p variants={fadeInUp} className="mb-6">
                 My journey in technology began with a fascination for creating beautiful, functional interfaces. This led me to explore the world of design before diving deep into frontend development with React and Next.js.
               </motion.p>
               
-              <motion.p variants={fadeInUp} className="mb-4">
+              <motion.p variants={fadeInUp} className="mb-6">
                 As my skills evolved, I expanded into backend development with Node.js and Go, building robust and scalable systems. Recently, I've been exploring machine learning and artificial intelligence, adding yet another dimension to my technical toolkit.
               </motion.p>
               
@@ -119,7 +122,7 @@ export default function AboutPage() {
         </div>
         
         <motion.div 
-          className="mt-16"
+          className="mb-20"
           ref={journeyRef}
         >
           <motion.h2
@@ -129,13 +132,13 @@ export default function AboutPage() {
               y: journeyInView ? 0 : 10 
             }}
             transition={{ duration: 0.5 }}
-            className="text-2xl font-bold mb-6"
+            className="text-2xl font-bold mb-8 text-center"
           >
             My Journey
           </motion.h2>
           
           <motion.div 
-            className="space-y-12"
+            className="space-y-12 max-w-3xl mx-auto"
             variants={staggerContainer}
             initial="hidden"
             animate={journeyInView ? "visible" : "hidden"}
@@ -159,6 +162,10 @@ export default function AboutPage() {
             />
           </motion.div>
         </motion.div>
+
+        <div className="mt-24">
+          <Skills />
+        </div>
       </div>
     </div>
   );
