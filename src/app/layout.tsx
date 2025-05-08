@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -7,8 +6,6 @@ import { personalInfo } from '@/data/personal-info';
 import PageTransition from '@/components/animations/PageTransition';
 import { ThemeProvider } from "@/context/ThemeContext";
 import { LanguageProvider } from "../contexts/LanguageContext";
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: `${personalInfo.name} - ${personalInfo.title}`,
@@ -22,16 +19,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300`}>
+      <body className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200 font-sans">
         <ThemeProvider>
           <LanguageProvider>
-        <Header />
-      <PageTransition>
+            <Header />
+            <PageTransition>
               <main className="pt-16">
-          {children}
-        </main>
-      </PageTransition>
-        <Footer />
+                {children}
+              </main>
+            </PageTransition>
+            <Footer />
           </LanguageProvider>
         </ThemeProvider>
       </body>

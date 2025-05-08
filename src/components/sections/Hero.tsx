@@ -487,7 +487,7 @@ const designGuideVariants = {
                   variants={buttonVariants}
                 >
                   <Link
-                    href="/contact"
+                    href="/#contact"
                     className="px-6 py-3 bg-lavender-700 text-white rounded-md transition-colors relative overflow-hidden group"
                   >
                     <span className="relative z-10">{language === 'en' ? "Get in Touch" : "联系我"}</span>
@@ -495,23 +495,19 @@ const designGuideVariants = {
                   </Link>
                 </motion.div>
 
-                {personalInfo.resume && (
-                  <motion.div
-                    whileHover="hover"
-                    whileTap="tap"
-                    variants={buttonVariants}
+                <motion.div
+                  whileHover="hover"
+                  whileTap="tap"
+                  variants={buttonVariants}
+                >
+                  <Link
+                    href="/blogs"
+                    className="px-6 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition-all relative overflow-hidden group"
                   >
-                    <a
-                      href={personalInfo.resume}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 border border-gray-300 rounded-md hover:bg-gray-50 transition-all relative overflow-hidden group"
-                    >
-                      <span className="relative z-10">{language === 'en' ? "View Resume" : "查看简历"}</span>
-                      <span className="absolute inset-0 bg-gray-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 rounded-md"></span>
-                    </a>
-                  </motion.div>
-                )}
+                    <span className="relative z-10">{language === 'en' ? "View Blogs" : "查看博客"}</span>
+                    <span className="absolute inset-0 bg-gray-100 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 rounded-md"></span>
+                  </Link>
+                </motion.div>
               </motion.div>
 
               {/* 按钮组辅助线 */}
