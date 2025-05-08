@@ -31,9 +31,13 @@ const footerLinks = {
       en: "Projects",
       zh: "项目"
     },
-    contact: {
-      en: "Contact",
-      zh: "联系"
+    blogs: {
+      en: "Blogs",
+      zh: "博客"
+    },
+    gallery: {
+      en: "Gallery",
+      zh: "画廊"
     }
   }
 };
@@ -88,10 +92,18 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/contact" 
+                  href="/blogs" 
                   className="text-sm text-white/70 hover:text-white transition-colors duration-300 inline-block hover:translate-x-1"
                 >
-                  {footerLinks.nav.contact[language]}
+                  {footerLinks.nav.blogs[language]}
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/gallery" 
+                  className="text-sm text-white/70 hover:text-white transition-colors duration-300 inline-block hover:translate-x-1"
+                >
+                  {footerLinks.nav.gallery[language]}
                 </Link>
               </li>
             </ul>

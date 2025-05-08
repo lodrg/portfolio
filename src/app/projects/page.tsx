@@ -38,7 +38,7 @@ export default function ProjectsPage() {
   };
 
   const projectVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -48,7 +48,7 @@ export default function ProjectsPage() {
       }
     },
     hover: {
-      y: -10,
+      y: -5,
       transition: {
         duration: 0.3,
         ease: [0.22, 1, 0.36, 1]
@@ -58,8 +58,8 @@ export default function ProjectsPage() {
 
   const iconVariants = {
     hover: {
-      scale: 1.2,
-      rotate: 5,
+      scale: 1.1,
+      rotate: 3,
       transition: {
         duration: 0.2,
         ease: "easeInOut"
@@ -79,7 +79,7 @@ export default function ProjectsPage() {
   };
 
   const skillItemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,
       scale: 1,
@@ -92,7 +92,7 @@ export default function ProjectsPage() {
 
   const imageVariants = {
     hover: {
-      scale: 1.05,
+      scale: 1.02,
       transition: {
         duration: 0.5,
         ease: [0.22, 1, 0.36, 1]
@@ -141,99 +141,82 @@ export default function ProjectsPage() {
         animate="visible"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            variants={projectVariants}
-            whileHover="hover"
-            className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow"
-          >
-            <motion.div
-              variants={imageVariants}
-              className="relative h-60 w-full"
+        {projects.map((project) => (
+          <div key={project.id} className="relative">
+            <Link 
+              href={`/projects/${project.id}`}
+              className="block"
             >
-              <Image
-                src={project.thumbnail}
-                alt={project.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover"
-              />
-              
-              <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity flex items-center justify-center gap-4 opacity-0 hover:opacity-100">
-                {project.github && (
-                  <motion.a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-                    variants={iconVariants}
-                    whileHover="hover"
-                  >
-                    <FaGithub size={20} />
-                  </motion.a>
-                )}
-                
-                {project.link && (
-                  <motion.a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
-                    variants={iconVariants}
-                    whileHover="hover"
-                  >
-                    <FaExternalLinkAlt size={18} />
-                  </motion.a>
-                )}
-              </div>
-            </motion.div>
-
-            <div className="p-6">
-              <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{project.description}</p>
-
               <motion.div
-                className="flex flex-wrap gap-2 mb-4"
-                variants={skillsVariants}
+                variants={projectVariants}
+                whileHover="hover"
+                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow h-full"
               >
-                {project.skills.map((skill) => (
-                  <motion.span
-                    key={skill}
-                    className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 text-sm rounded-full"
-                    variants={skillItemVariants}
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </motion.div>
+                <motion.div
+                  variants={imageVariants}
+                  className="relative h-60 w-full"
+                >
+                  <Image
+                    src={project.thumbnail}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                  
+                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity flex items-center justify-center gap-4 opacity-0 hover:opacity-100">
+                    {project.github && (
+                      <motion.div
+                        className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                        variants={iconVariants}
+                        whileHover="hover"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.open(project.github, '_blank', 'noopener,noreferrer');
+                        }}
+                      >
+                        <FaGithub size={20} />
+                      </motion.div>
+                    )}
+                    
+                    {project.link && (
+                      <motion.div
+                        className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                        variants={iconVariants}
+                        whileHover="hover"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          window.open(project.link, '_blank', 'noopener,noreferrer');
+                        }}
+                      >
+                        <FaExternalLinkAlt size={18} />
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
 
-              <motion.div
-                className="flex justify-between items-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 + index * 0.1 }}
-              >
-                <Link href={`/projects/${project.id}`}>
-                  <motion.span
-                    className="text-lavender-700 dark:text-lavender-400 font-medium inline-flex items-center group"
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
+                <div className="p-6">
+                  <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h2>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{project.description}</p>
+
+                  <motion.div
+                    className="flex flex-wrap gap-2"
+                    variants={skillsVariants}
                   >
-                    {sectionText.viewDetails[language]}
-                    <motion.span
-                      className="inline-block ml-1"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 3 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      →
-                    </motion.span>
-                  </motion.span>
-                </Link>
+                    {project.skills.map((skill) => (
+                      <motion.span
+                        key={skill}
+                        className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 text-sm rounded-full"
+                        variants={skillItemVariants}
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+                </div>
               </motion.div>
-            </div>
-          </motion.div>
+            </Link>
+          </div>
         ))}
       </motion.div>
     </div>

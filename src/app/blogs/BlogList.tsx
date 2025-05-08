@@ -42,21 +42,24 @@ export default function BlogList({ posts }: BlogListProps) {
       <div className="container mx-auto px-4">
         <h1 className="text-2xl font-bold mb-8 text-center text-gray-900 dark:text-white">My Blogs</h1>
         
-        <div className="max-w-4xl mx-auto space-y-4">
-          {posts.map((post, index) => (
+        <motion.div 
+          className="max-w-4xl mx-auto space-y-4"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+        >
+          {posts.map((post) => (
             <motion.article
               key={post.id}
               className="group bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 hover:shadow-md transition-all duration-300 cursor-pointer"
               variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ 
-                once: true,
-                margin: "0px 0px -100px 0px"
-              }}
-              transition={{
-                delay: index * 0.1,
-              }}
               whileHover="hover"
               onClick={() => router.push(`/blogs/${post.id}`)}
             >
@@ -93,7 +96,7 @@ export default function BlogList({ posts }: BlogListProps) {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

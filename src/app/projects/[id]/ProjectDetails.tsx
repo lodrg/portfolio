@@ -6,13 +6,60 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { Project } from '@/types/project';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaGithub } from 'react-icons/fa';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalizedContent } from '@/hooks/useLocalizedContent';
+
+const pageText = {
+  backToProjects: {
+    en: "Back to Projects",
+    zh: "返回项目"
+  },
+  overview: {
+    en: "Overview",
+    zh: "项目概述"
+  },
+  developmentProcess: {
+    en: "Development Process",
+    zh: "开发过程"
+  },
+  keyTakeaways: {
+    en: "Key Takeaways",
+    zh: "主要收获"
+  },
+  viewOnGithub: {
+    en: "View on GitHub",
+    zh: "在 GitHub 上查看"
+  },
+  takeaways: {
+    en: [
+      "Learned how to implement complex features efficiently.",
+      "Improved skills in responsive design and accessibility.",
+      "Enhanced understanding of user experience principles."
+    ],
+    zh: [
+      "学会了如何高效实现复杂功能。",
+      "提升了响应式设计和可访问性技能。",
+      "加深了对用户体验原则的理解。"
+    ]
+  }
+};
+
+interface LocalizedProject extends Project {
+  longDescription?: string;
+  takeaways?: string[];
+  github?: string;
+}
 
 interface ProjectDetailsProps {
-  project: Project; // 使用正确的项目类型
+  project: Project;
 }
 
 export default function ProjectDetails({ project }: ProjectDetailsProps) {
+  const { language } = useLanguage();
+  const { projects } = useLocalizedContent();
+  const localizedProject = projects.find(p => p.id === project.id) as LocalizedProject | undefined;
+  
   const processRef = useRef(null);
   const takeawaysRef = useRef(null);
   const processInView = useInView(processRef, { once: true, margin: "0px 0px -100px 0px" });
@@ -63,20 +110,37 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
           <span className="group-hover:-translate-x-1 transition-transform duration-300">
             <FaArrowLeft className="mr-2" />
           </span>
-          <span>Back to Projects</span>
+          <span>{pageText.backToProjects[language]}</span>
           <span className="absolute -bottom-1 left-5 w-0 h-0.5 bg-lavender-700 dark:bg-lavender-500 group-hover:w-[calc(100%-20px)] transition-all duration-300"></span>
         </Link>
       </motion.div>
       
       <div className="max-w-4xl mx-auto">
-        <motion.h1 
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
-        >
-          {project.title}
-        </motion.h1>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <motion.h1 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+          >
+            {localizedProject?.title || project.title}
+          </motion.h1>
+
+          {(localizedProject?.github || project.github) && (
+            <motion.a
+              href={localizedProject?.github || project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              <FaGithub className="w-5 h-5" />
+              <span>{pageText.viewOnGithub[language]}</span>
+            </motion.a>
+          )}
+        </div>
         
         <motion.div 
           variants={staggerContainer}
@@ -104,7 +168,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
         >
           <Image
             src={project.thumbnail}
-            alt={project.title}
+            alt={localizedProject?.title || project.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover transition-transform duration-700 hover:scale-105"
@@ -118,14 +182,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
           animate="visible"
           className="prose dark:prose-invert max-w-none mb-12"
         >
-          <motion.h2 variants={fadeInUp}>Overview</motion.h2>
-          <motion.p variants={fadeInUp}>{project.description}</motion.p>
-          
+          <motion.h2 variants={fadeInUp}>{pageText.overview[language]}</motion.h2>
           <motion.p variants={fadeInUp}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, 
-            nisl vel ultricies lacinia, nisl nisl aliquam nisl, eu aliquam nisl 
-            nisl sit amet nisl. Sed euismod, nisl vel ultricies lacinia, nisl nisl 
-            aliquam nisl, eu aliquam nisl nisl sit amet nisl.
+            {localizedProject?.longDescription || localizedProject?.description || project.description}
           </motion.p>
         </motion.div>
         
@@ -140,15 +199,15 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               transition={{ duration: 0.5 }}
               className="text-2xl font-bold mb-6"
             >
-              Development Process
+              {pageText.developmentProcess[language]}
             </motion.h2>
             
             <div className="space-y-12">
-              {project.process.steps.map((step : {
-      title: string;
-      description: string;
-      image?: string;
-    }, index: number) => (
+              {(localizedProject?.process?.steps || project.process.steps).map((step : {
+                title: string;
+                description: string;
+                image?: string;
+              }, index: number) => (
                 <ProcessStep 
                   key={index} 
                   step={step} 
@@ -177,7 +236,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             transition={{ delay: 0.1, duration: 0.4 }}
             className="text-2xl font-bold mb-4"
           >
-            Key Takeaways
+            {pageText.keyTakeaways[language]}
           </motion.h2>
           
           <motion.ul 
@@ -186,9 +245,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             animate={takeawaysInView ? "visible" : "hidden"}
             className="space-y-3"
           >
-            <TakeawayItem number={1} text="Learned how to implement complex features efficiently." />
-            <TakeawayItem number={2} text="Improved skills in responsive design and accessibility." />
-            <TakeawayItem number={3} text="Enhanced understanding of user experience principles." />
+            {(localizedProject?.takeaways || pageText.takeaways[language]).map((text: string, index: number) => (
+              <TakeawayItem key={index} number={index + 1} text={text} />
+            ))}
           </motion.ul>
         </motion.div>
       </div>
