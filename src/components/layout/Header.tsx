@@ -73,26 +73,13 @@ export default function Header() {
               <li key={link.href}>
                 <Link 
                   href={link.href}
-                  prefetch={true}
                   className={`relative py-2 ${
                     pathname === link.href 
-                      ? 'text-lavender-700 dark:text-lavender-400 font-medium' 
-                      : 'text-gray-700 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors duration-200'
-                  }`}
+                      ? 'text-lavender-700 dark:text-lavender-400 font-medium after:scale-x-100' 
+                      : 'text-gray-700 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400'
+                  } after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-lavender-700 dark:after:bg-lavender-400 after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out`}
                 >
                   {link.label[language]}
-                  {pathname === link.href && (
-                    <motion.div 
-                      layoutId="underline"
-                      className="absolute left-0 right-0 h-0.5 bg-lavender-700 dark:bg-lavender-400 bottom-0" 
-                      transition={{ 
-                        type: 'spring', 
-                        stiffness: 300, 
-                        damping: 30,
-                        duration: 0.3
-                      }}
-                    />
-                  )}
                 </Link>
               </li>
             ))}
@@ -242,13 +229,6 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.label[language]}
-                    {pathname === link.href && (
-                      <motion.div 
-                        layoutId="mobileUnderline"
-                        className="h-0.5 w-full bg-lavender-700 dark:bg-lavender-400 mt-1" 
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
                   </Link>
                 </li>
               ))}
