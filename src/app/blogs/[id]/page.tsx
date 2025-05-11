@@ -2,6 +2,7 @@ import { getAllPostIds, getPostData } from '@/lib/markdown';
 import { Metadata } from 'next';
 import BlogPost from '@/app/blogs/[id]/BlogPost';
 
+export const revalidate = 60; // 每60秒重新验证一次
 
 export async function generateMetadata(props: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const params = await props.params;
