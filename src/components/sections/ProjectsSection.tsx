@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLocalizedData } from '@/utils/language';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalizedContent } from '@/hooks/useLocalizedContent';
 
 const sectionText = {
   title: {
@@ -21,7 +22,8 @@ const sectionText = {
 };
 
 export default function ProjectsSection() {
-  const { projects, language } = useLocalizedData();
+  const { language } = useLanguage();
+  const { projects } = useLocalizedContent();
   
   // Only show featured projects on the home page
   const featuredProjects = projects.filter(project => project.featured);

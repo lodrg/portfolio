@@ -1,55 +1,67 @@
 "use client";
 
-import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
-import { useLocalizedData } from '@/utils/language';
+import { useRef, useState } from 'react';
+import { FaEnvelope, FaPhone } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocalizedContent } from '@/hooks/useLocalizedContent';
 
 const sectionText = {
   title: {
-    en: "Contact",
-    zh: "联系"
+    en: "Contact Me",
+    zh: "联系我"
   },
   subtitle: {
-    en: "Get in touch with me",
-    zh: "与我取得联系"
-  },
-  name: {
-    en: "Name",
-    zh: "姓名"
-  },
-  email: {
-    en: "Your Email",
-    zh: "您的邮箱"
-  },
-  message: {
-    en: "Message",
-    zh: "消息"
-  },
-  send: {
-    en: "Send Message",
-    zh: "发送消息"
+    en: "Let's work together",
+    zh: "让我们一起合作"
   },
   contactInfo: {
     en: "Contact Information",
-    zh: "联系信息"
+    zh: "联系方式"
   },
-  location: {
-    en: "Location",
-    zh: "位置"
+  form: {
+    name: {
+      en: "Name",
+      zh: "姓名"
+    },
+    email: {
+      en: "Email",
+      zh: "邮箱"
+    },
+    message: {
+      en: "Message",
+      zh: "留言"
+    },
+    send: {
+      en: "Send Message",
+      zh: "发送消息"
+    },
+    sending: {
+      en: "Sending...",
+      zh: "发送中..."
+    },
+    success: {
+      en: "Message sent successfully!",
+      zh: "消息发送成功！"
+    },
+    error: {
+      en: "Failed to send message. Please try again.",
+      zh: "发送失败，请重试。"
+    }
   }
 };
 
 export default function ContactSection() {
-  const { personalInfo, language } = useLocalizedData();
+  const { language } = useLanguage();
+  const { personalInfo } = useLocalizedContent();
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState({
     loading: false,
     success: false,
     error: false
   });
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -71,7 +83,7 @@ export default function ContactSection() {
       }
     }
   };
-  
+
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus({ loading: true, success: false, error: false });
@@ -110,11 +122,11 @@ export default function ContactSection() {
           </p>
         </motion.div>
         
-          <motion.div
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-            viewport={{ once: true }}
+          viewport={{ once: true }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12"
         >
           <motion.div variants={itemVariants} className="space-y-8">
@@ -125,23 +137,23 @@ export default function ContactSection() {
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
                 <FaEnvelope className="text-lavender-700 dark:text-lavender-400" />
-                </div>
-                <div>
+              </div>
+              <div>
                 <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Email</h4>
                 <a 
                   href={`mailto:${personalInfo.email}`}
                   className="text-gray-600 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors"
                 >
-                    {personalInfo.email}
-                  </a>
-                </div>
+                  {personalInfo.email}
+                </a>
               </div>
-              
+            </div>
+            
             <div className="flex items-start space-x-4">
               <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
                 <FaPhone className="text-lavender-700 dark:text-lavender-400" />
-                </div>
-                <div>
+              </div>
+              <div>
                 <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Phone</h4>
                 <a 
                   href={`tel:${personalInfo.phone}`}
@@ -151,87 +163,69 @@ export default function ContactSection() {
                 </a>
               </div>
             </div>
-            
-            <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                <FaMapMarkerAlt className="text-lavender-700 dark:text-lavender-400" />
-              </div>
-              <div>
-                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
-                  {sectionText.location[language]}
-                </h4>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {personalInfo.location}
-                </p>
-              </div>
-            </div>
           </motion.div>
-          
+
           <motion.div variants={itemVariants}>
-            <form ref={formRef} className="space-y-6" onSubmit={sendEmail}>
-                <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  {sectionText.name[language]}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 dark:focus:ring-lavender-400 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                    required
-                  />
-                </div>
-                
-                <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  {sectionText.email[language]}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 dark:focus:ring-lavender-400 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                    required
-                  />
-                </div>
-                
-                <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  {sectionText.message[language]}
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {sectionText.form.name[language]}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="user_name"
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {sectionText.form.email[language]}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="user_email"
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  {sectionText.form.message[language]}
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 dark:focus:ring-lavender-400 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                    required
-                  ></textarea>
-                </div>
-                
-              <motion.button
-                  type="submit"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                />
+              </div>
+              
+              <button
+                type="submit"
                 disabled={status.loading}
-                className={`w-full px-6 py-3 bg-lavender-700 text-white rounded-lg hover:bg-lavender-800 transition-colors ${
-                  status.loading ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                whileHover={{ scale: status.loading ? 1 : 1.02 }}
-                whileTap={{ scale: status.loading ? 1 : 0.98 }}
+                className="w-full px-6 py-3 bg-lavender-700 text-white rounded-lg hover:bg-lavender-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {status.loading ? 'Sending...' : sectionText.send[language]}
-              </motion.button>
-
+                {status.loading ? sectionText.form.sending[language] : sectionText.form.send[language]}
+              </button>
+              
               {status.success && (
-                <p className="text-green-500 text-sm text-center">
-                  Message sent successfully!
+                <p className="text-green-600 dark:text-green-400 text-center">
+                  {sectionText.form.success[language]}
                 </p>
               )}
-
+              
               {status.error && (
-                <p className="text-red-500 text-sm text-center">
-                  An error occurred. Please try again later.
+                <p className="text-red-600 dark:text-red-400 text-center">
+                  {sectionText.form.error[language]}
                 </p>
               )}
-              </form>
+            </form>
           </motion.div>
         </motion.div>
       </div>

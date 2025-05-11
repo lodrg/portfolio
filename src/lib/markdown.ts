@@ -18,13 +18,13 @@ export interface BlogPost {
 export async function getAllPostIds() {
   try {
     const fileNames = await fs.promises.readdir(blogDirectory);
-    return fileNames.map(fileName => {
-      return {
-        params: {
-          id: fileName.replace(/\.md$/, '')
-        }
-      };
-    });
+  return fileNames.map(fileName => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, '')
+      }
+    };
+  });
   } catch (error) {
     console.error('Error reading blog directory:', error);
     return [];
@@ -63,29 +63,29 @@ export async function getAllPosts(): Promise<BlogPost[]> {
     const fileNames = await fs.promises.readdir(blogDirectory);
     const allPostsData = await Promise.all(
       fileNames.map(async (fileName) => {
-        const id = fileName.replace(/\.md$/, '');
-        const fullPath = path.join(blogDirectory, fileName);
+    const id = fileName.replace(/\.md$/, '');
+    const fullPath = path.join(blogDirectory, fileName);
         const fileContents = await fs.promises.readFile(fullPath, 'utf8');
-        const matterResult = matter(fileContents);
+    const matterResult = matter(fileContents);
 
-        return {
-          id,
-          title: matterResult.data.title,
-          date: matterResult.data.date,
-          description: matterResult.data.description,
-          content: matterResult.content,
-          tags: matterResult.data.tags || [],
-        };
+    return {
+      id,
+      title: matterResult.data.title,
+      date: matterResult.data.date,
+      description: matterResult.data.description,
+      content: matterResult.content,
+      tags: matterResult.data.tags || [],
+    };
       })
     );
 
-    return allPostsData.sort((a, b) => {
-      if (a.date < b.date) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
   } catch (error) {
     console.error('Error reading blog posts:', error);
     return [];
