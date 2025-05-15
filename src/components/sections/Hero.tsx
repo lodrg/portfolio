@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { SiBilibili } from 'react-icons/si';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -112,11 +113,13 @@ export default function Hero() {
   const getIconComponent = (icon: string) => {
     switch (icon) {
       case 'github':
-        return <FaGithub size={24} />;
+        return <FaGithub className="w-5 h-5" />;
       case 'linkedin':
-        return <FaLinkedin size={24} />;
+        return <FaLinkedin className="w-5 h-5" />;
       case 'twitter':
-        return <FaTwitter size={24} />;
+        return <FaTwitter className="w-5 h-5" />;
+      case 'bilibili':
+        return <SiBilibili className="w-5 h-5" />;
       default:
         return null;
     }

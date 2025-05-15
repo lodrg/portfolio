@@ -9,6 +9,8 @@ import { skills } from '@/data/skills';
 import { skillsZh } from '@/data/skills.zh';
 import { blogs } from '@/data/blogs';
 import { blogsZh } from '@/data/blogs.zh';
+import { friendLinks } from '@/data/friend-links';
+import { friendLinksZh } from '@/data/friend-links.zh';
 
 export function useLocalizedContent() {
   const { language } = useLanguage();
@@ -18,6 +20,7 @@ export function useLocalizedContent() {
     projects: language === 'en' ? projects : projectsZh,
     skills: language === 'en' ? skills : skillsZh,
     blogs: language === 'en' ? blogs : blogsZh,
+    friendLinks: language === 'en' ? friendLinks : friendLinksZh
   };
 
   return content;

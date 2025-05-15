@@ -2,8 +2,15 @@
 
 import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { SiBilibili } from 'react-icons/si';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useLocalizedContent } from '@/hooks/useLocalizedContent';
+
+interface FriendLink {
+  name: string;
+  url: string;
+  description: string;
+}
 
 const footerLinks = {
   quickLinks: {
@@ -13,6 +20,10 @@ const footerLinks = {
   connect: {
     en: "Connect",
     zh: "联系方式"
+  },
+  friends: {
+    en: "Friends",
+    zh: "友链"
   },
   rights: {
     en: "All rights reserved.",
@@ -50,6 +61,8 @@ function getIconComponent(icon: string) {
       return <FaLinkedin className="w-5 h-5" />;
     case 'twitter':
       return <FaTwitter className="w-5 h-5" />;
+    case 'bilibili':
+      return <SiBilibili className="w-5 h-5" />;
     default:
       return null;
   }
@@ -57,12 +70,12 @@ function getIconComponent(icon: string) {
 
 export default function Footer() {
   const { language } = useLanguage();
-  const { personalInfo } = useLocalizedContent();
+  const { personalInfo, friendLinks } = useLocalizedContent();
 
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           <div className="space-y-6">
             <h3 className="text-sm font-semibold text-white/90 tracking-wide uppercase">{footerLinks.quickLinks[language]}</h3>
             <ul className="space-y-3">
@@ -133,6 +146,24 @@ export default function Footer() {
                 {personalInfo.email}
               </a>
             </p>
+          </div>
+
+          <div className="space-y-6">
+            <h3 className="text-sm font-semibold text-white/90 tracking-wide uppercase">{footerLinks.friends[language]}</h3>
+            <ul className="space-y-3">
+              {friendLinks.map((friend: FriendLink) => (
+                <li key={friend.url}>
+                  <a 
+                    href={friend.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 hover:text-white transition-colors duration-300 inline-block hover:translate-x-1"
+                  >
+                    {friend.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         

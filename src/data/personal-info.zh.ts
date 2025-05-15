@@ -23,6 +23,11 @@ export const personalInfoZh: PersonalInfo = {
       platform: "Twitter",
       url: "https://x.com/David_300song",
       icon: "twitter"
+    },
+    {
+      platform: "Bilibili",
+      url: "https://space.bilibili.com/4651617",
+      icon: "bilibili"
     }
   ],
   resume: "/resume.pdf",
