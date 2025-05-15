@@ -4,8 +4,8 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { personalInfo } from '@/data/personal-info';
 import PageTransition from '@/components/animations/PageTransition';
-import { ThemeProvider } from "@/context/ThemeContext";
-import { LanguageProvider } from "../contexts/LanguageContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: `${personalInfo.name} - ${personalInfo.title}`,
