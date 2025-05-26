@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SkillCategory } from '../../types/skill';
-import { FaDesktop, FaCode, FaServer, FaBrain } from 'react-icons/fa';
+import { FaDesktop, FaCode, FaServer, FaBrain, FaRobot } from 'react-icons/fa';
 import { useLocalizedContent } from '@/hooks/useLocalizedContent';
 
 interface Skill {
@@ -33,6 +33,10 @@ const categoryLabels = {
     en: "Backend",
     zh: "后端"
   },
+  crawler: {
+    en: "Crawler",
+    zh: "爬虫"
+  },
   ml: {
     en: "Machine Learning",
     zh: "机器学习"
@@ -57,10 +61,11 @@ export default function SkillsSection() {
   
   const categories = [
     { id: 'all', icon: <FaCode /> },
-    { id: 'design', icon: <FaDesktop /> },
     { id: 'frontend', icon: <FaCode /> },
     { id: 'backend', icon: <FaServer /> },
-    { id: 'ml', icon: <FaBrain /> }
+    { id: 'crawler', icon: <FaRobot /> },
+    { id: 'ml', icon: <FaBrain /> },
+    { id: 'design', icon: <FaDesktop /> },
   ];
   
   const filteredSkills = activeCategory === 'all' 

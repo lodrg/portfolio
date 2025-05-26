@@ -150,7 +150,7 @@ export default function ProjectsPage() {
               <motion.div
                 variants={projectVariants}
                 whileHover="hover"
-                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow h-full"
+                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow h-full flex flex-col"
               >
                 <motion.div
                   variants={imageVariants}
@@ -195,12 +195,12 @@ export default function ProjectsPage() {
                   </div>
                 </motion.div>
 
-                <div className="p-6">
-                  <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h2>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">{project.description}</p>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white min-h-[1.5em]">{project.title}</h2>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 min-h-[3em]">{project.description}</p>
 
                   <motion.div
-                    className="flex flex-wrap gap-2"
+                    className="flex flex-wrap gap-2 mt-auto"
                     variants={skillsVariants}
                   >
                     {project.skills.map((skill) => (

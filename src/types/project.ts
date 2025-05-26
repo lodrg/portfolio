@@ -15,4 +15,8 @@ export interface Project {
         image?: string;
       }[];
     };
+    takeaways?: {
+      en: string[];
+      zh: string[];
+    };
   }

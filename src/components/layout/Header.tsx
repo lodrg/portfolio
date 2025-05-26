@@ -18,8 +18,8 @@ type NavLink = {
 
 const navLinks: NavLink[] = [
   { href: '/', label: { en: 'Home', zh: '首页' } },
-  { href: '/about', label: { en: 'About', zh: '关于' } },
   { href: '/projects', label: { en: 'Projects', zh: '项目' } },
+  { href: '/about', label: { en: 'About', zh: '关于' } },
   { href: '/blogs', label: { en: 'Blogs', zh: '博客' } },
   { href: '/gallery', label: { en: 'Gallery', zh: '画廊' } },
 ];

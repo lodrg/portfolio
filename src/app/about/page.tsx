@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { useLanguage } from "@/contexts/LanguageContext";
-import Skills from "@/components/sections/SkillsSection";
 
 const sectionText = {
   title: {
@@ -188,10 +187,6 @@ export default function AboutPage() {
             />
           </motion.div>
         </motion.div>
-
-        <div className="mt-24">
-          <Skills />
-        </div>
       </div>
     </div>
   );

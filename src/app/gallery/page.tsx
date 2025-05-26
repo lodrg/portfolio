@@ -1,7 +1,9 @@
 "use client";
 
 import Image from 'next/image';
-import { FC, MouseEvent } from 'react';
+import { FC, MouseEvent, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // 定义图片项接口
 interface ImageItem {
@@ -69,6 +71,9 @@ const ImageGallery: FC<ImageGalleryProps> = ({ images, onImageOpen }) => {
 
 // 博客文章页面组件
 const BlogPost: FC = () => {
+  const headerRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, margin: "-100px 0px" });
+  const { language } = useLanguage();
 
   // 图片数据数组
   const images: ImageItem[] = [
@@ -121,19 +126,42 @@ const BlogPost: FC = () => {
   // };
 
   return (
-    <div className="pt-20">
-        <div>
-          <ImageGallery
-            images={images}
-            // onImageOpen={handleImageOpen}
-          />
+    <div className="container mx-auto px-4 py-12 pt-4">
+      <motion.div
+        ref={headerRef}
+        initial={{ opacity: 0, y: 20 }}
+        animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-4xl"
+      >
+      </motion.div>
 
-          <div className="flex justify-center my-8">
-            <button className="px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded-full font-medium transition-colors duration-300">
-              加载更多
-            </button>
-          </div>
+      <motion.div
+        className="flex flex-col items-center justify-center my-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <p className="text-2xl md:text-3xl italic text-gray-700 dark:text-gray-200 mb-4 text-center">
+          {language === 'en' ? "Drawing is the basis of all visual arts." : "绘画是一切视觉艺术的基础。"}
+        </p>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          {language === 'en' ? "— Michelangelo" : "— 米开朗基罗"}
+        </p>
+      </motion.div>
+
+      <div>
+        <ImageGallery
+          images={images}
+          // onImageOpen={handleImageOpen}
+        />
+
+        <div className="flex justify-center my-8">
+          <button className="px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded-full font-medium transition-colors duration-300">
+            加载更多
+          </button>
         </div>
+      </div>
     </div>
   );
 };

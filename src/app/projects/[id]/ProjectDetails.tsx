@@ -31,23 +31,10 @@ const pageText = {
     en: "View on GitHub",
     zh: "在 GitHub 上查看"
   },
-  takeaways: {
-    en: [
-      "Learned how to implement complex features efficiently.",
-      "Improved skills in responsive design and accessibility.",
-      "Enhanced understanding of user experience principles."
-    ],
-    zh: [
-      "学会了如何高效实现复杂功能。",
-      "提升了响应式设计和可访问性技能。",
-      "加深了对用户体验原则的理解。"
-    ]
-  }
 };
 
 interface LocalizedProject extends Project {
   longDescription?: string;
-  takeaways?: string[];
   github?: string;
 }
 
@@ -228,13 +215,13 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             y: takeawaysInView ? 0 : 20 
           }}
           transition={{ duration: 0.5 }}
-          className="bg-gray-50 rounded-lg p-8 shadow-sm"
+          className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 shadow-sm"
         >
           <motion.h2 
             initial={{ opacity: 0 }}
             animate={{ opacity: takeawaysInView ? 1 : 0 }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="text-2xl font-bold mb-4"
+            className="text-2xl font-bold mb-4 text-gray-900 dark:text-white"
           >
             {pageText.keyTakeaways[language]}
           </motion.h2>
@@ -245,7 +232,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             animate={takeawaysInView ? "visible" : "hidden"}
             className="space-y-3"
           >
-            {(localizedProject?.takeaways || pageText.takeaways[language]).map((text: string, index: number) => (
+            {(localizedProject?.takeaways?.[language] || []).map((text: string, index: number) => (
               <TakeawayItem key={index} number={index + 1} text={text} />
             ))}
           </motion.ul>
@@ -353,7 +340,7 @@ function TakeawayItem({ number, text }: TakeawayItemProps) {
       >
         {number}
       </motion.span>
-      <p>{text}</p>
+      <p className="text-gray-700 dark:text-gray-300">{text}</p>
     </motion.li>
   );
 }
