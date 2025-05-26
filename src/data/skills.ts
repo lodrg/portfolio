@@ -16,17 +16,17 @@ export const skills: Skill[] = [
     category: "frontend",
     icon: "nextjs",
     proficiency: 5,
-    description: "Developing server-side rendered and statically generated React applications.",
+    description: "The efficiency of developing websites with Next.js is good in my opinion and the ecology is comprehensive.",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
-    id: "design-ui-ux",
-    name: "UI/UX Design",
-    category: "design",
-    icon: "figma",
+    id: "crawler",
+    name: "crawler",
+    category: "crawler",
+    icon: "crawler",
     proficiency: 5,
-    description: "Creating user-centered designs with a focus on intuitive interfaces and delightful experiences.",
-    technologies: ["Figma", "Adobe XD", "Sketch"]
+    description: "I have accumulated a lot of experience in parsing multiple large social media.",
+    technologies: ["JsonPath", "Xpath","WebRequest Rules"]
   },
   {
     id: "backend-node",
@@ -43,7 +43,7 @@ export const skills: Skill[] = [
     category: "backend",
     icon: "go",
     proficiency: 4,
-    description: "Developing high-performance backend services with Go.",
+    description: "I have a Go version of the database project. In my opinion, it is comfortable to write some underlying services with Go. I plan to improve my database to support my small projects.",
     technologies: ["Go", "Gin", "GORM", "PostgreSQL"]
   },
   {
@@ -61,7 +61,7 @@ export const skills: Skill[] = [
     category: "backend",
     icon: "java",
     proficiency: 5,
-    description: "Developing enterprise applications with Java ecosystem.",
+    description: "Although the Java ecosystem is comprehensive and well-standardized, making it suitable for large enterprise projects, it's rather cumbersome for small companies and individual developers.",
     technologies: ["Java", "Spring Boot", "Spring MVC", "MyBatis"]
   },
   {
@@ -70,7 +70,7 @@ export const skills: Skill[] = [
     category: "backend",
     icon: "java",
     proficiency: 5,
-    description: "Building distributed data processing systems and data pipelines.",
+    description: "Common big data solutions include flink, spark as distributed data processing frameworks, kafka as distributed message queues, and various mainstream databases such as pgsql, mysql, clickhouse. Solutions in the OLAP field are similar.",
     technologies: ["Flink", "Spark", "Kafka", "ClickHouse", "PostgreSQL", "MySQL"]
   },
   {
@@ -79,7 +79,7 @@ export const skills: Skill[] = [
     category: "ml",
     icon: "pytorch",
     proficiency: 4,
-    description: "Implementing machine learning solutions for various applications.",
+    description: "I have Python and R machine learning experience. But in fact, I used weka (machine learning solution in the Java ecosystem) in my previous projects.",
     technologies: ["PyTorch", "TensorFlow", "Weka", "scikit-learn"]
   }
 ];

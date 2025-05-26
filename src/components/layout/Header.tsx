@@ -63,7 +63,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-xl font-bold text-gray-900 dark:text-white">
-          Portfolio
+        David's Space
         </Link>
 
         {/* Desktop Navigation */}

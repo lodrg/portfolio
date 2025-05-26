@@ -1,4 +1,4 @@
-export type SkillCategory = 'design' | 'frontend' | 'backend' | 'ml';
+export type SkillCategory = 'design' | 'frontend' | 'backend' | 'ml' | "crawler";
 
 export interface Skill {
   id: string;

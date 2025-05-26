@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
     // 如果你想暂时绕过类型检查来完成构建
     ignoreBuildErrors: true,
   },
-};
-
-module.exports = {
   images: {
     remotePatterns: [
       {
@@ -22,8 +19,13 @@ module.exports = {
         hostname: 'notion-avatar.app',
         pathname: '/api/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'go.dev',
+        pathname: '/blog/go-brand/Go-Logo/PNG/Go-Logo_Black.png',
+      },
     ],
   },
-}
+};
 
 export default nextConfig;

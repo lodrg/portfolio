@@ -16,7 +16,7 @@ export const skillsZh: Skill[] = [
     category: "frontend",
     icon: "nextjs",
     proficiency: 5,
-    description: "开发服务端渲染和静态生成的 React 应用程序。",
+    description: "开发服务端渲染和静态生成的 React 应用程序，在我看来使用 Next.js 开发网站的效率是不错的，生态也很全面。",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
@@ -43,8 +43,8 @@ export const skillsZh: Skill[] = [
     category: "backend",
     icon: "java",
     proficiency: 5,
-    description: "使用 Java 生态系统（如 SSM、SpringBoot）开发高性能后端服务。不过说实话我不是很喜欢它。",
-    technologies: ["Java", "Spring Boot", "Spring MVC", "MyBatis"]
+    description: "我的大部分公司项目的后端几乎都是 Java 生态的，它甚至在技术选型上影响到了机器学习的领域。我认为 Java 是全面和强大的，它非常适合大公司项目，进行标准化，模块划分以及容易找到替代的技术人员，但对于公司或者个人开发者来说，它有点重了。说实话我不是很喜欢它。",
+    technologies: ["Java", "Spring Boot", "Spring MVC", "MyBatis", "Wake", "Velocity"]
   },
   {
     id: "bigdata-java",
@@ -52,7 +52,7 @@ export const skillsZh: Skill[] = [
     category: "backend",
     icon: "java",
     proficiency: 5,
-    description: "常用的大数据解决方案包括 flink、spark 作为分布式数据处理框架，kafka 作为分布式消息队列，以及 pgsql、mysql、clickhouse 等多种主流数据库。",
+    description: "常用的大数据解决方案包括 flink、spark 作为分布式数据处理框架，kafka 作为分布式消息队列，以及 pgsql、mysql、clickhouse 等多种主流数据库。OLAP 领域的解决方案大多是类似的。",
     technologies: ["Flink", "Spark", "Kafka", "ClickHouse", "PostgreSQL", "MySQL"]
   },
   {
@@ -61,7 +61,7 @@ export const skillsZh: Skill[] = [
     category: "backend",
     icon: "go",
     proficiency: 4,
-    description: "使用 Go 语言开发高性能后端服务。拥有一个 Go 版本的数据库项目。",
+    description: "我拥有一个 Go 版本的数据库项目。在我看来使用 go 编写一下底层服务是很舒适的。我打算完善一下我的数据库让它在支撑我的一下小的项目。",
     technologies: ["Go", "Gin", "GORM", "PostgreSQL"]
   },
   {
@@ -70,17 +70,17 @@ export const skillsZh: Skill[] = [
     category: "ml",
     icon: "pytorch",
     proficiency: 4,
-    description: "实现各种应用的深度学习模型。实际上，我之前项目中使用的是 weka（Java 生态系统的机器学习解决方案）。",
+    description: "有 Python 和 R 的机器学习经验。但实际上，我之前项目中使用的是 weka（Java 生态系统的机器学习解决方案）。",
     technologies: ["PyTorch", "TensorFlow", "Weka", "scikit-learn"]
   },
   {
-    id: "design-ui-ux",
-    name: "UI/UX 设计",
-    category: "design",
-    icon: "figma",
+    id: "crawler",
+    name: "crawler",
+    category: "crawler",
+    icon: "crawler",
     proficiency: 5,
-    description: "创建以用户为中心的设计，注重直观的界面和愉悦的体验。",
-    technologies: ["Figma", "Sketch","原型设计"]
+    description: "之前的项目有对多个大型的社交媒体进行解析的需求，这块积累了很多经验。",
+    technologies: ["JsonPath", "Xpath","WebRequest Rules"]
   },
   // 添加更多技能...
 ]; 

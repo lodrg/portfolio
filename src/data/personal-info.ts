@@ -42,9 +42,9 @@ export const personalInfo: PersonalInfo = {
       description: "Developed and maintained multiple web applications using React, Next.js, and Node.js."
     },
     {
-      title: "Frontend Developer",
+      title: "Backend Developer",
       period: "2018 - 2020",
-      description: "Created responsive and interactive user interfaces using React and modern CSS frameworks."
+      description: "Developed and maintained multiple web applications using Java, Spring Boot, and Node.js."
     }
   ]
 };
