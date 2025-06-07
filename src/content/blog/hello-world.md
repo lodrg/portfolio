@@ -11,9 +11,12 @@ tags: ['algorithm']
 
 ## 双链表合并
 
+### 思路
 对于双链表合并的问题主要注意点是 dummy 节点的问题   
 dummy 用来解决新链表的首节点空的一些问题  
 其他的就是对两个链表的遍历，以及最后有节点遍历完了之后的收尾问题  
+
+### 代码 
 
 ```go
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
@@ -51,14 +54,17 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 
 ## 单链表的分解
 
+### 题目 
 给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。  
 
 你应当 保留 两个分区中每个节点的初始相对位置。  
 
-思路：  
+### 思路  
   这里还是需要使用 dummy  
   同时还需注意指针的维护问题，每次在原链表上向后移动指针的使用需要注意把之前的指针清理掉  
 
+
+### 代码 
 
 ```go
 func partition(head *ListNode, x int) *ListNode {
@@ -95,6 +101,8 @@ func partition(head *ListNode, x int) *ListNode {
 
 ## 合并 k 个有序链表
 
+### 题目
+
 给你一个链表数组，每个链表都已经按升序排列。  
 请你将所有链表合并到一个升序链表中，返回合并后的链表。  
 
@@ -127,13 +135,15 @@ k == lists.length \
 lists[i] 按 升序 排列 \
 lists[i].length 的总和不超过 10^4 
 
----
+### 思路
 
 合并多个链表的逻辑跟合并两个没什么区别 
 
 子问题是要先找到所有的链表里面，多个链表的第一个节点里面最小的那个 
 
 核心的解决方案是使用优先级队列（最小堆），动态获取最小值，每次获取到最小值后，把当前 node 的下一个节点放在堆上 
+
+### 代码 
 
 ```go
 import "container/heap"
