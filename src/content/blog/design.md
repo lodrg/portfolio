@@ -1,5 +1,5 @@
 ---
-title: '设计套路总结（一）'
+title: '设计系统总结（一）'
 date: '2025-06-08'
 description: '对于设计系统的构建和最佳实践的一些思路和看法'
 tags: ['design','figma','design system']
