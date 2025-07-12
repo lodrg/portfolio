@@ -51,9 +51,9 @@ export default function Header() {
     };
   }, []);
 
-  // 新增：菜单弹出时监听点击外部关闭
+  // 优化：只在菜单打开时监听点击外部
   useClickAway(mobileMenuRef, () => {
-    if (mobileMenuOpen) setMobileMenuOpen(false);
+    setMobileMenuOpen(false);
   });
 
   const handleLanguageToggle = (targetLang: 'en' | 'zh') => {
