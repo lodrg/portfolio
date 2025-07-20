@@ -26,8 +26,6 @@ const navLinks: NavLink[] = [
 ];
 
 export default function Header() {
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
