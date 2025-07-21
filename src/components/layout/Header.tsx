@@ -215,7 +215,7 @@ export default function Header() {
                       absolute       
                       top-full        
                       right-0         
-                      w-48           
+                      w-24       
                       bg-white/80    
                       dark:bg-gray-900/80 
                       backdrop-blur-sm  
@@ -231,7 +231,7 @@ export default function Header() {
               opacity: { duration: 0.2 }
             }}
           >
-            <ul className="flex flex-col items-center space-y-4 py-4">
+            <ul className="flex flex-col items-start space-y-4 py-4 px-6">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
