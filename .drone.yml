@@ -3,6 +3,9 @@ type: docker
 name: portfolio-pipeline
 
 steps:
+  - name: clone
+    image: drone/git-clone   # 使用新的镜像名
+
   # 构建和测试
   - name: build
     image: node:20.19.1
