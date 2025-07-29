@@ -15,6 +15,7 @@ export interface BlogPost {
   tags: string[];
 }
 
+
 export async function getAllPostIds() {
   try {
     const fileNames = await fs.promises.readdir(blogDirectory);
