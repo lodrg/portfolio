@@ -6,7 +6,6 @@ import html from 'remark-html';
 
 const blogDirectory = path.join(process.cwd(), 'src/content/blog');
 
-
 export interface BlogPost {
   id: string;
   title: string;
