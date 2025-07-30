@@ -8,6 +8,7 @@ clone:
 steps:
   # 构建和测试
   - name: build
+    image: node:20.19.1
     commands:
       - npm install
       - npm run build
