@@ -1,37 +1,9 @@
 kind: pipeline
 type: docker
-name: portfolio-pipeline
-
-clone:
-  disable: true  # 禁用默认克隆
+name: default
 
 steps:
-  # 构建和测试
-  - name: build
-    image: node:20.19.1
-    commands:
-      - npm install
-      - npm run build
-
-  # 部署
-  - name: deploy
-    image: appleboy/drone-ssh
-    settings:
-      host:
-        from_secret: SSH_HOST
-      username:
-        from_secret: SSH_USERNAME
-      password:
-        from_secret: SSH_PASSWORD
-      port: 22
-      script:
-        - cd /path/to/your/app
-        - git pull origin main
-        - npm install
-        - npm run build
-        - pm2 delete portfolio || true
-        - pm2 start npm --name "portfolio" -- start
-
-trigger:
-  branch:
-    - main
+- name: test
+  image: alpine
+  commands:
+  - echo "Hello World"
