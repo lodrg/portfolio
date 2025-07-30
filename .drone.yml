@@ -6,12 +6,6 @@ clone:
   disable: true  # 禁用默认克隆
 
 steps:
-  - name: clone
-    image: plugins/git  # 使用新版镜像名
-    settings:
-      depth: 1  # 设置克隆深度
-      recursive: true  # 递归克隆子模块
-
   # 构建和测试
   - name: build
     image: node:20.19.1
