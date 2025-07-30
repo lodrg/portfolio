@@ -7,7 +7,7 @@ clone:
 
 steps:
   - name: clone
-    image: plugins/git  # 使用新版镜像名
+    image: docker.io/plugins/git:latest  # 使用新版镜像名
     settings:
       depth: 1  # 设置克隆深度
       recursive: true  # 递归克隆子模块
