@@ -27,6 +27,7 @@ steps:
         - npm install --production
         - pm2 reload "next-app" || pm2 start npm --name "next-app" -- start
 
+
 trigger:
   branch:
     - master
