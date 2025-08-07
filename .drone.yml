@@ -10,8 +10,8 @@ steps:
         from_secret: ssh_host
       username:
         from_secret: ssh_username
-      password:
-        from_secret: ssh_password
+      key:
+        from_secret: key
       port: 22
       script:
         - cd /root/xuan/portfolio
