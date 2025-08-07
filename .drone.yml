@@ -10,7 +10,7 @@ trigger:
 
 steps:
   - name: build
-    image: node
+    image: node:23
     commands:
       - npm install
       - npm run build 
