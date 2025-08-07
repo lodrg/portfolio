@@ -15,11 +15,14 @@ steps:
       port: 22
       script:
         - cd /home/administrator/xuan/portfolio
+        - export NVM_DIR="$HOME/.nvm"
+        - source $NVM_DIR/nvm.sh  # 直接 source nvm.sh
+        - nvm use 23  # 或其他你想用的版本
         - git pull
         - npm install
         - npm run build
         - pm2 restart "next-app" || pm2 start npm --name "next-app" -- start
-        
+
 
 trigger:
   branch:
