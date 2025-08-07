@@ -1,16 +1,18 @@
 kind: pipeline
-type: docker
+type: exec
 name: default
+
+platform:
+  os: linux
+  arch: x86_64
 
 steps:
   - name: install and build
-    image: node:18
     commands:
       - npm install
       - npm build
 
   - name: deploy
-    image: node:18
     commands:
       - pm2 delete "next-app" || true  # 如果进程存在则删除，不存在也不会报错
       - pm2 start npm --name "next-app" -- start
