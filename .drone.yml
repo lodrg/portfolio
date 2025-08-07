@@ -14,7 +14,7 @@ steps:
         from_secret: ssh_key
       port: 22
       script:
-        - sudo i
+        - sudo -i
         - cd /root/xuan/portfolio
         - git pull
         - npm install
