@@ -3,32 +3,23 @@ type: docker
 name: default
 
 steps:
-  - name: build
-    image: node:22
-    commands:
-      - npm install
-      - npm run build 
-
   - name: deploy
     image: appleboy/drone-ssh
-    environment:
-      ENV_VARS:
-        from_secret: env_vars
     settings:
-      host:
+      host: 
         from_secret: ssh_host
       username:
         from_secret: ssh_username
       password:
         from_secret: ssh_password
       port: 22
-      source: ./
-      target: /root/xuan/portfolio
       script:
         - cd /root/xuan/portfolio
-        - rm -rf .next dist build public/*
+        - git pull
+        - npm install
+        - npm run build
         - npm install --production
-        - pm2 reload "next-app" || pm2 start npm --name "next-app" -- start
+        - pm2 restart "next-app" || pm2 start npm --name "next-app" -- start
 
 trigger:
   branch:
