@@ -14,12 +14,10 @@ steps:
         from_secret: ssh_password
       port: 22
       script:
-        - echo 'xuanxuan!1' | sudo -S -i        
-        - cd /root/xuan/portfolio
+        - cd /home/administrator/xuan/portfolio
         - git pull
         - npm install
         - npm run build
-        - npm install --production
         - pm2 restart "next-app" || pm2 start npm --name "next-app" -- start
 
 trigger:
