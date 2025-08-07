@@ -2,12 +2,6 @@ kind: pipeline
 type: docker
 name: default
 
-trigger:
-  branch:
-    - master
-  event:
-    - push
-
 steps:
   - name: build
     image: node:23
@@ -32,3 +26,9 @@ steps:
         - find . -maxdepth 1 ! -name 'node_modules' ! -name '.' ! -name '..' ! -name '.env' -exec rm -rf {} +
         - npm install --production
         - pm2 restart "next-app" || pm2 start npm --name "next-app" -- start
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
