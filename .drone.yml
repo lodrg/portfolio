@@ -2,20 +2,33 @@ kind: pipeline
 type: docker
 name: default
 
-steps:
-  - name: install and build and deploy
-    image: node:23
-    commands:
-      - npm install
-      - npm build
-      - pm2 delete "next-app" || true  # 如果进程存在则删除，不存在也不会报错
-      - pm2 start npm --name "next-app" -- start
-    when:
-      branch:
-        - main  # 或者你的部署分支
-
 trigger:
   branch:
-    - main  # 或者你的部署分支
+    - master
   event:
     - push
+
+steps:
+  - name: build
+    image: node
+    commands:
+      - npm install
+      - npm run build 
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    settings:
+      host: 
+        from_secret: ssh_host
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      port: 22
+      source: ./*  # 需要传输整个项目，因为 Next.js 需要完整的项目文件
+      target: /root/xuan/portfolio
+      script:
+        - cd /root/xuan/portfolio
+        - find . -maxdepth 1 ! -name 'node_modules' ! -name '.' ! -name '..' ! -name '.env' -exec rm -rf {} +
+        - npm install --production
+        - pm2 restart "next-app" || pm2 start npm --name "next-app" -- start
