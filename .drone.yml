@@ -3,8 +3,23 @@ type: docker
 name: default
 
 steps:
-- name: test
-  image: alpine
-  commands:
-  - echo "Hello World"
-  
+  - name: install and build
+    image: node:18
+    commands:
+      - npm install
+      - npm build
+
+  - name: deploy
+    image: node:18
+    commands:
+      - pm2 delete "next-app" || true  # 如果进程存在则删除，不存在也不会报错
+      - pm2 start npm --name "next-app" -- start
+    when:
+      branch:
+        - main  # 或者你的部署分支
+
+trigger:
+  branch:
+    - main  # 或者你的部署分支
+  event:
+    - push
