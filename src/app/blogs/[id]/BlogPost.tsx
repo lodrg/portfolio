@@ -26,7 +26,7 @@ export default function BlogPost({ post }: BlogPostProps) {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-800 dark:text-lavender-200 rounded-full text-sm"
+                  className="px-3 py-1 bg-forest-100 dark:bg-forest-900 text-forest-800 dark:text-forest-200 rounded-full text-sm"
                 >
                   {tag}
                 </span>

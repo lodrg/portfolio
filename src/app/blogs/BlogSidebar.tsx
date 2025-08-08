@@ -33,13 +33,13 @@ export default function BlogSidebar({ posts, selectedYear, setSelectedYear, sele
           <div className="font-medium text-gray-700 dark:text-gray-300 mb-2">{text.byYear}</div>
           <div className="flex flex-wrap gap-2">
             <button
-              className={`px-3 py-1 rounded-full text-sm border ${selectedYear === null ? 'bg-lavender-700 text-white border-lavender-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
+              className={`px-3 py-1 rounded-full text-sm border ${selectedYear === null ? 'bg-forest-700 text-white border-forest-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
               onClick={() => setSelectedYear(null)}
             >{text.all}</button>
             {years.map(year => (
               <button
                 key={year}
-                className={`px-3 py-1 rounded-full text-sm border ${selectedYear === year ? 'bg-lavender-700 text-white border-lavender-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
+                className={`px-3 py-1 rounded-full text-sm border ${selectedYear === year ? 'bg-forest-700 text-white border-forest-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
                 onClick={() => setSelectedYear(year)}
               >{year}</button>
             ))}
@@ -49,13 +49,13 @@ export default function BlogSidebar({ posts, selectedYear, setSelectedYear, sele
           <div className="font-medium text-gray-700 dark:text-gray-300 mb-2">{text.byTag}</div>
           <div className="flex flex-wrap gap-2">
             <button
-              className={`px-3 py-1 rounded-full text-sm border ${selectedTag === null ? 'bg-lavender-700 text-white border-lavender-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
+              className={`px-3 py-1 rounded-full text-sm border ${selectedTag === null ? 'bg-forest-700 text-white border-forest-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
               onClick={() => setSelectedTag(null)}
             >{text.all}</button>
             {tags.map(tag => (
               <button
                 key={tag}
-                className={`px-3 py-1 rounded-full text-sm border ${selectedTag === tag ? 'bg-lavender-700 text-white border-lavender-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
+                className={`px-3 py-1 rounded-full text-sm border ${selectedTag === tag ? 'bg-forest-700 text-white border-forest-700' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700'}`}
                 onClick={() => setSelectedTag(tag)}
               >{tag}</button>
             ))}

@@ -92,13 +92,13 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       >
         <Link 
           href="/projects"
-          className="inline-flex items-center text-lavender-700 dark:text-lavender-400 hover:text-lavender-700 dark:hover:text-lavender-300 mb-8 transition-colors relative group"
+          className="inline-flex items-center text-forest-700 dark:text-forest-400 hover:text-forest-700 dark:hover:text-forest-300 mb-8 transition-colors relative group"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-300">
             <FaArrowLeft className="mr-2" />
           </span>
           <span>{pageText.backToProjects[language]}</span>
-          <span className="absolute -bottom-1 left-5 w-0 h-0.5 bg-lavender-700 dark:bg-lavender-500 group-hover:w-[calc(100%-20px)] transition-all duration-300"></span>
+          <span className="absolute -bottom-1 left-5 w-0 h-0.5 bg-forest-700 dark:bg-forest-500 group-hover:w-[calc(100%-20px)] transition-all duration-300"></span>
         </Link>
       </motion.div>
       
@@ -140,7 +140,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               key={skill}
               variants={fadeIn}
               transition={{ delay: 0.1 + index * 0.05 }}
-              className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 text-sm rounded-full hover:bg-lavender-200 dark:hover:bg-lavender-800 transition-colors"
+              className="px-3 py-1 bg-forest-100 dark:bg-forest-900 text-forest-700 dark:text-forest-300 text-sm rounded-full hover:bg-forest-200 dark:hover:bg-forest-800 transition-colors"
             >
               {skill}
             </motion.span>
@@ -277,7 +277,7 @@ function ProcessStep({ step, index, inView, delay }: ProcessStepProps) {
     >
       <div className={index % 2 === 0 ? 'md:order-1' : 'md:order-2'}>
         <h3 className="text-xl font-bold mb-3">
-          <span className="text-lavender-700">{index + 1}.</span> {step.title}
+          <span className="text-forest-700">{index + 1}.</span> {step.title}
         </h3>
         <p className="text-gray-700">{step.description}</p>
       </div>
@@ -336,7 +336,7 @@ function TakeawayItem({ number, text }: TakeawayItemProps) {
           damping: 20, 
           delay: 0.3 + number * 0.1 
         }}
-        className="bg-lavender-700 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5"
+        className="bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5"
       >
         {number}
       </motion.span>

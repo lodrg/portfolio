@@ -5,10 +5,10 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --primary: #0070f3;
+  --primary: #2f7d56;
   --secondary: #6b7280;
   --accent: #f3f4f6;
-  --primary-gradient: linear-gradient(45deg, #ff7f00, #ffa64d);
+  --primary-gradient: linear-gradient(45deg, #2f7d56, #5bb583);
 }
 
 @theme inline {
@@ -22,10 +22,10 @@
   :root {
     --background: #1a1a1a;
     --foreground: #ffffff;
-    --primary: #3b82f6;
+    --primary: #5bb583;
     --secondary: #9ca3af;
     --accent: #2d2d2d;
-    --primary-gradient: linear-gradient(45deg, #ff8c42, #ffb366);
+    --primary-gradient: linear-gradient(45deg, #5bb583, #8dd0a8);
   }
 }
 
@@ -38,14 +38,14 @@ body {
 
 @layer base {
   :root {
-    --color-primary: 255, 127, 0;
-    --color-primary-gradient: linear-gradient(45deg, #ff7f00, #ffa64d);
+    --color-primary: 47, 125, 86;
+    --color-primary-gradient: linear-gradient(45deg, #2f7d56, #5bb583);
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-primary: 255, 140, 66;
-      --color-primary-gradient: linear-gradient(45deg, #ff8c42, #ffb366);
+      --color-primary: 91, 181, 131;
+      --color-primary-gradient: linear-gradient(45deg, #5bb583, #8dd0a8);
     }
   }
 }
@@ -99,32 +99,33 @@ html {
 }
 
 @theme {
-  /* 定义薰衣草颜色 */
-  --color-lavender-50: #f8f5ff;
-  --color-lavender-100: #f2eafa;
-  --color-lavender-200: #e3d7f5;
-  --color-lavender-300: #cbb7eb;
-  --color-lavender-400: #a786df;
-  --color-lavender-500: #8e6bd6; /* 主颜色 */
-  --color-lavender-600: #764dbf;
-  --color-lavender-700: #5e36a8;
-  --color-lavender-800: #462291;
-  --color-lavender-900: #300e7a;
+  /* 定义墨绿色 */
+  --color-forest-50: #f0f9f4;
+  --color-forest-100: #dcf2e3;
+  --color-forest-200: #bce4c9;
+  --color-forest-300: #8dd0a8;
+  --color-forest-400: #5bb583;
+  --color-forest-500: #3d9b6b; /* 主颜色 */
+  --color-forest-600: #2f7d56;
+  --color-forest-700: #2a6447;
+  --color-forest-800: #25503a;
+  --color-forest-900: #1f4230;
+  --color-forest-950: #0f2a1d;
 
-  /* 定义薰衣草渐变 */
-  --color-lavender-gradient: linear-gradient(90deg, #e3d7f5, #8e6bd6, #5e36a8);
+  /* 定义墨绿色渐变 */
+  --color-forest-gradient: linear-gradient(90deg, #bce4c9, #3d9b6b, #2a6447);
 
-  /* 定义薰衣草动画 */
-  --animate-lavender-fade: lavender-fade 0.5s ease-in-out;
+  /* 定义墨绿色动画 */
+  --animate-forest-fade: forest-fade 0.5s ease-in-out;
 
-  @keyframes lavender-fade {
+  @keyframes forest-fade {
     0% {
-      background-color: var(--color-lavender-50);
+      background-color: var(--color-forest-50);
       opacity: 0;
       transform: scale(0.95);
     }
     100% {
-      background-color: var(--color-lavender-500);
+      background-color: var(--color-forest-500);
       opacity: 1;
       transform: scale(1);
     }
@@ -134,7 +135,7 @@ html {
 .dark {
   --background: #1a1a1a;
   --foreground: #ffffff;
-  --primary: #3b82f6;
+  --primary: #5bb583;
   --secondary: #9ca3af;
   --accent: #2d2d2d;
 }

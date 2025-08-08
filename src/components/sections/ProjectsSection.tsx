@@ -100,7 +100,7 @@ export default function ProjectsSection() {
                   {project.skills.slice(0, 3).map((skill) => (
                     <span 
                       key={skill} 
-                      className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 rounded-full text-sm"
+                      className="px-3 py-1 bg-forest-100 dark:bg-forest-900 text-forest-700 dark:text-forest-300 rounded-full text-sm"
                     >
                       {skill}
                     </span>
@@ -108,7 +108,7 @@ export default function ProjectsSection() {
                 </div>
                 <Link href={`/projects/${project.id}`}>
                   <motion.button
-                    className="w-full px-4 py-2 bg-lavender-700 text-white rounded-lg hover:bg-lavender-800 transition-colors"
+                    className="w-full px-4 py-2 bg-forest-700 text-white rounded-lg hover:bg-forest-800 transition-colors"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >

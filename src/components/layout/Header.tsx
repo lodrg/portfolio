@@ -80,9 +80,9 @@ export default function Header() {
                 <Link
                   href={link.href}
                   className={`relative py-2 ${pathname === link.href
-                    ? 'text-lavender-700 dark:text-lavender-400 font-medium after:scale-x-100'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400'
-                    } after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-lavender-700 dark:after:bg-lavender-400 after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out`}
+                    ? 'text-forest-700 dark:text-forest-400 font-medium after:scale-x-100'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-forest-700 dark:hover:text-forest-400'
+                    } after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-forest-700 dark:after:bg-forest-400 after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out`}
                 >
                   {link.label[language]}
                 </Link>
@@ -238,8 +238,8 @@ export default function Header() {
                     href={link.href}
                     className={
                       pathname === link.href
-                        ? 'text-lavender-700 dark:text-lavender-400 font-medium'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors duration-200'
+                        ? 'text-forest-700 dark:text-forest-400 font-medium'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-forest-700 dark:hover:text-forest-400 transition-colors duration-200'
                     }
                     onClick={() => setMobileMenuOpen(false)}
                   >

@@ -118,7 +118,7 @@ export default function ProjectsPage() {
         <h1 className="text-3xl md:text-4xl font-bold mb-8 relative text-gray-900 dark:text-white">
           {sectionText.title[language]}
           <motion.span
-            className="absolute -bottom-2 left-0 h-1 bg-lavender-700 dark:bg-lavender-500"
+            className="absolute -bottom-2 left-0 h-1 bg-forest-700 dark:bg-forest-500"
             initial={{ width: 0 }}
             animate={headerInView ? { width: "120px" } : { width: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -167,7 +167,7 @@ export default function ProjectsPage() {
                   <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-50 transition-opacity flex items-center justify-center gap-4 opacity-0 hover:opacity-100">
                     {project.github && (
                       <motion.div
-                        className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                        className="p-3 bg-white dark:bg-gray-700 rounded-full text-forest-700 dark:text-forest-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                         variants={iconVariants}
                         whileHover="hover"
                         onClick={(e) => {
@@ -181,7 +181,7 @@ export default function ProjectsPage() {
                     
                     {project.link && (
                       <motion.div
-                        className="p-3 bg-white dark:bg-gray-700 rounded-full text-lavender-700 dark:text-lavender-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                        className="p-3 bg-white dark:bg-gray-700 rounded-full text-forest-700 dark:text-forest-400 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                         variants={iconVariants}
                         whileHover="hover"
                         onClick={(e) => {
@@ -206,7 +206,7 @@ export default function ProjectsPage() {
                     {project.skills.map((skill) => (
                       <motion.span
                         key={skill}
-                        className="px-3 py-1 bg-lavender-100 dark:bg-lavender-900 text-lavender-700 dark:text-lavender-300 text-sm rounded-full"
+                        className="px-3 py-1 bg-forest-100 dark:bg-forest-900 text-forest-700 dark:text-forest-300 text-sm rounded-full"
                         variants={skillItemVariants}
                       >
                         {skill}

@@ -96,8 +96,8 @@ export default function SkillsSection() {
                 onClick={() => setActiveCategory(category.id as SkillCategory | 'all')}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ${
                   activeCategory === category.id
-                    ? 'bg-lavender-600 text-white shadow-lg shadow-lavender-200 dark:shadow-lavender-900/30 scale-105'
-                    : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-lavender-100 dark:hover:bg-lavender-900 hover:scale-105'
+                    ? 'bg-forest-600 text-white shadow-lg shadow-forest-200 dark:shadow-forest-900/30 scale-105'
+                    : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-forest-100 dark:hover:bg-forest-900 hover:scale-105'
                 }`}
               >
                 {category.icon}
@@ -130,7 +130,7 @@ export default function SkillsSection() {
                       {skill.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1.5 bg-lavender-50 dark:bg-lavender-900/50 text-lavender-700 dark:text-lavender-300 text-sm rounded-full font-medium"
+                          className="px-3 py-1.5 bg-forest-50 dark:bg-forest-900/50 text-forest-700 dark:text-forest-300 text-sm rounded-full font-medium"
                         >
                           {tech}
                         </span>

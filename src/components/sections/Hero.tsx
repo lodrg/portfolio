@@ -246,7 +246,7 @@ const designGuideVariants = {
           <>
             {/* 全局布局网格系统 */}
             <motion.div
-              className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
+              className="absolute -inset-1 border border-dashed border-forest-500/40 rounded-sm pointer-events-none"
               variants={designGuideVariants}
               initial="hidden"
               animate="visible"
@@ -255,24 +255,24 @@ const designGuideVariants = {
               {/* 主要网格 */}
               <div className="absolute inset-0 grid grid-cols-12 opacity-20">
                 {Array.from({ length: 12 }).map((_, i) => (
-                  <div key={i} className="h-full border-r border-lavender-500/40" />
+                  <div key={i} className="h-full border-r border-forest-500/40" />
                 ))}
               </div>
 
               {/* 水平内边距标记 */}
-              <div className="absolute h-[1px] w-full bg-lavender-500/30 top-20" />
-              <div className="absolute h-[1px] w-full bg-lavender-500/30 bottom-16" />
+              <div className="absolute h-[1px] w-full bg-forest-500/30 top-20" />
+              <div className="absolute h-[1px] w-full bg-forest-500/30 bottom-16" />
 
               {/* 容器边界 */}
               <div className="absolute w-full max-w-screen-xl mx-auto inset-x-0 top-0 bottom-0">
-                <div className="w-full h-full border-x border-lavender-500/30 px-4" />
+                <div className="w-full h-full border-x border-forest-500/30 px-4" />
               </div>
 
               {/* 黄金分割线 */}
-              <div className="absolute left-0 w-full h-px bg-lavender-500/30" style={{ top: '38.2%' }} />
-              <div className="absolute left-0 w-full h-px bg-lavender-500/30" style={{ top: '61.8%' }} />
-              <div className="absolute top-0 h-full w-px bg-lavender-500/30" style={{ left: '38.2%' }} />
-              <div className="absolute top-0 h-full w-px bg-lavender-500/30" style={{ left: '61.8%' }} />
+              <div className="absolute left-0 w-full h-px bg-forest-500/30" style={{ top: '38.2%' }} />
+              <div className="absolute left-0 w-full h-px bg-forest-500/30" style={{ top: '61.8%' }} />
+              <div className="absolute top-0 h-full w-px bg-forest-500/30" style={{ left: '38.2%' }} />
+              <div className="absolute top-0 h-full w-px bg-forest-500/30" style={{ left: '61.8%' }} />
             </motion.div>
 
             {/* 精确内容网格 */}
@@ -285,8 +285,8 @@ const designGuideVariants = {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full h-full">
                 {/* 双栏布局标记 */}
-                <div className="border-r border-dashed border-lavender-500/30 relative h-full hidden md:block" />
-                <div className="border-l border-dashed border-lavender-500/30 relative h-full hidden md:block" />
+                <div className="border-r border-dashed border-forest-500/30 relative h-full hidden md:block" />
+                <div className="border-l border-dashed border-forest-500/30 relative h-full hidden md:block" />
               </div>
             </motion.div>
 
@@ -299,21 +299,21 @@ const designGuideVariants = {
               variants={designGuideVariants}
             >
               {/* 顶部内边距 */}
-              <div className="absolute top-0 left-1/2 h-20 w-[1px] bg-lavender-500/40" />
-              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-[10px] text-lavender-500/70 font-mono whitespace-nowrap">
+              <div className="absolute top-0 left-1/2 h-20 w-[1px] bg-forest-500/40" />
+              <div className="absolute top-10 left-1/2 transform -translate-x-1/2 text-[10px] text-forest-500/70 font-mono whitespace-nowrap">
                 pt-20
               </div>
 
               {/* 底部内边距 */}
-              <div className="absolute bottom-0 left-1/2 h-16 w-[1px] bg-lavender-500/40" />
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-[10px] text-lavender-500/70 font-mono whitespace-nowrap">
+              <div className="absolute bottom-0 left-1/2 h-16 w-[1px] bg-forest-500/40" />
+              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-[10px] text-forest-500/70 font-mono whitespace-nowrap">
                 pb-16
               </div>
             </motion.div>
 
             {/* 设计系统信息 */}
             <motion.div
-              className="fixed bottom-6 right-6 px-3 py-1.5 bg-white/20 border border-lavender-300/30 rounded text-xs text-lavender-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
+              className="fixed bottom-6 right-6 px-3 py-1.5 bg-white/20 border border-forest-300/30 rounded text-xs text-forest-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -324,7 +324,7 @@ const designGuideVariants = {
 
             {/* 响应式断点标记 */}
             <motion.div
-              className="fixed top-6 right-6 px-3 py-1.5 bg-white/20 border border-lavender-300/30 rounded text-xs text-lavender-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
+              className="fixed top-6 right-6 px-3 py-1.5 bg-white/20 border border-forest-300/30 rounded text-xs text-forest-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -335,7 +335,7 @@ const designGuideVariants = {
 
             {/* 黄金比例标记 */}
             <motion.div
-              className="fixed top-1/2 transform -translate-y-1/2 left-2 px-2 py-1 bg-white/20 border-l-2 border-lavender-500/40 text-xs text-lavender-700/80 font-medium z-20 pointer-events-none"
+              className="fixed top-1/2 transform -translate-y-1/2 left-2 px-2 py-1 bg-white/20 border-l-2 border-forest-500/40 text-xs text-forest-700/80 font-medium z-20 pointer-events-none"
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -352,12 +352,12 @@ const designGuideVariants = {
               exit="exit"
               variants={designGuideVariants}
             >
-              <div className="w-full h-[1px] bg-lavender-500/15" />
+              <div className="w-full h-[1px] bg-forest-500/15" />
             </motion.div>
 
             {/* 滚动提示 */}
             <motion.div
-              className="fixed bottom-20 left-1/2 transform -translate-x-1/2 px-3 py-1.5 bg-white/20 border border-lavender-300/30 rounded text-xs text-lavender-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
+              className="fixed bottom-20 left-1/2 transform -translate-x-1/2 px-3 py-1.5 bg-white/20 border border-forest-300/30 rounded text-xs text-forest-700/80 font-medium backdrop-blur-sm z-20 pointer-events-none"
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -384,7 +384,7 @@ const designGuideVariants = {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 inline-block"
               >
                 {language === 'en' ? "Hi, I'm" : "你好，我是"}{" "}
-                <span className="bg-gradient-to-r from-lavender-700 to-purple-600 text-transparent bg-clip-text">
+                <span className="bg-gradient-to-r from-forest-700 to-forest-600 text-transparent bg-clip-text">
                   {personalInfo.name}
                 </span>
               </motion.h1>
@@ -392,7 +392,7 @@ const designGuideVariants = {
               {/* 标题辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
               {showDesignGuides && (
                 <motion.div
-                  className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
+                  className="absolute -inset-1 border border-dashed border-forest-500/40 rounded-sm pointer-events-none"
                   variants={designGuideVariants}
                   initial="hidden"
                   animate="visible"
@@ -402,9 +402,9 @@ const designGuideVariants = {
                     height: h1Ref.current ? h1Ref.current.offsetHeight + 8 : 'auto'
                   }}
                 >
-                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">h1</div>
-                  <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-4</div>
-                  <div className="absolute -top-4 left-0 text-[10px] text-lavender-500/70 font-mono">text-4xl md:text-5xl</div>
+                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-forest-500/70 font-mono">h1</div>
+                  <div className="absolute right-0 -bottom-4 text-[10px] text-forest-500/70 font-mono">mb-4</div>
+                  <div className="absolute -top-4 left-0 text-[10px] text-forest-500/70 font-mono">text-4xl md:text-5xl</div>
                 </motion.div>
               )}
             </div>
@@ -417,7 +417,7 @@ const designGuideVariants = {
                 variants={textVariants}
                 initial="hidden"
                 animate="visible"
-                className="text-2xl md:text-3xl text-lavender-700 font-medium mb-6"
+                className="text-2xl md:text-3xl text-forest-700 font-medium mb-6"
               >
                 {personalInfo.title}
               </motion.h2>
@@ -425,7 +425,7 @@ const designGuideVariants = {
               {/* 副标题辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
               {showDesignGuides && (
                 <motion.div
-                  className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
+                  className="absolute -inset-1 border border-dashed border-forest-500/40 rounded-sm pointer-events-none"
                   variants={designGuideVariants}
                   initial="hidden"
                   animate="visible"
@@ -435,9 +435,9 @@ const designGuideVariants = {
                     height: h2Ref.current ? h2Ref.current.offsetHeight + 8 : 'auto'
                   }}
                 >
-                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">h2</div>
-                  <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-6</div>
-                  <div className="absolute -top-4 left-0 text-[10px] text-lavender-500/70 font-mono">text-lavender-700</div>
+                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-forest-500/70 font-mono">h2</div>
+                  <div className="absolute right-0 -bottom-4 text-[10px] text-forest-500/70 font-mono">mb-6</div>
+                  <div className="absolute -top-4 left-0 text-[10px] text-forest-500/70 font-mono">text-forest-700</div>
                 </motion.div>
               )}
             </div>
@@ -458,7 +458,7 @@ const designGuideVariants = {
               {/* 段落辅助线 - 使用 ResizeObserver 监听尺寸变化 */}
               {showDesignGuides && (
                 <motion.div
-                  className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
+                  className="absolute -inset-1 border border-dashed border-forest-500/40 rounded-sm pointer-events-none"
                   variants={designGuideVariants}
                   initial="hidden"
                   animate="visible"
@@ -468,9 +468,9 @@ const designGuideVariants = {
                     height: pRef.current ? pRef.current.offsetHeight + 8 : 'auto'
                   }}
                 >
-                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">p</div>
-                  <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-8</div>
-                  <div className="absolute -bottom-4 left-0 text-[10px] text-lavender-500/70 font-mono">max-w-lg</div>
+                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-forest-500/70 font-mono">p</div>
+                  <div className="absolute right-0 -bottom-4 text-[10px] text-forest-500/70 font-mono">mb-8</div>
+                  <div className="absolute -bottom-4 left-0 text-[10px] text-forest-500/70 font-mono">max-w-lg</div>
                 </motion.div>
               )}
             </div>
@@ -491,10 +491,10 @@ const designGuideVariants = {
                 >
                   <Link
                     href="/#contact"
-                    className="px-6 py-3 bg-lavender-700 text-white rounded-md transition-colors relative overflow-hidden group"
+                    className="px-6 py-3 bg-forest-700 text-white rounded-md transition-colors relative overflow-hidden group"
                   >
                     <span className="relative z-10">{language === 'en' ? "Get in Touch" : "联系我"}</span>
-                    <span className="absolute inset-0 bg-lavender-700 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 rounded-md"></span>
+                    <span className="absolute inset-0 bg-forest-700 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 rounded-md"></span>
                   </Link>
                 </motion.div>
 
@@ -516,17 +516,17 @@ const designGuideVariants = {
               {/* 按钮组辅助线 */}
               {showDesignGuides && (
                 <motion.div
-                  className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
+                  className="absolute -inset-1 border border-dashed border-forest-500/40 rounded-sm pointer-events-none"
                   variants={designGuideVariants}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
                 >
-                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">buttons</div>
-                  <div className="absolute right-0 -bottom-4 text-[10px] text-lavender-500/70 font-mono">mb-8</div>
-                  <div className="absolute -top-4 left-0 text-[10px] text-lavender-500/70 font-mono">gap-4</div>
+                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-forest-500/70 font-mono">buttons</div>
+                  <div className="absolute right-0 -bottom-4 text-[10px] text-forest-500/70 font-mono">mb-8</div>
+                  <div className="absolute -top-4 left-0 text-[10px] text-forest-500/70 font-mono">gap-4</div>
                   <div className="absolute inset-0 flex">
-                    <div className="border-r border-dashed border-lavender-500/40" style={{ width: 'calc(50% - 8px)' }} />
+                    <div className="border-r border-dashed border-forest-500/40" style={{ width: 'calc(50% - 8px)' }} />
                   </div>
                 </motion.div>
               )}
@@ -547,7 +547,7 @@ const designGuideVariants = {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 text-gray-700 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors"
+                    className="p-2 text-gray-700 dark:text-gray-300 hover:text-forest-700 dark:hover:text-forest-400 transition-colors"
                     variants={socialItemVariants}
                     whileHover="hover"
                   >
@@ -559,20 +559,20 @@ const designGuideVariants = {
               {/* 社交链接辅助线 */}
               {showDesignGuides && (
                 <motion.div
-                  className="absolute -inset-1 border border-dashed border-lavender-500/40 rounded-sm pointer-events-none"
+                  className="absolute -inset-1 border border-dashed border-forest-500/40 rounded-sm pointer-events-none"
                   variants={designGuideVariants}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
                 >
-                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">social</div>
-                  <div className="absolute -top-4 left-0 text-[10px] text-lavender-500/70 font-mono">space-x-4</div>
+                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 text-[10px] text-forest-500/70 font-mono">social</div>
+                  <div className="absolute -top-4 left-0 text-[10px] text-forest-500/70 font-mono">space-x-4</div>
                   {/* 社交图标间距标记 */}
                   <div className="absolute inset-0">
                     {personalInfo.socialLinks.map((_: SocialLink, i: number) => (
                       <div
                         key={i}
-                        className="absolute top-0 bottom-0 border-r border-dashed border-lavender-500/30"
+                        className="absolute top-0 bottom-0 border-r border-dashed border-forest-500/30"
                         style={{ left: `${(i + 1) * 40}px` }}
                       />
                     ))}
@@ -618,42 +618,42 @@ const designGuideVariants = {
               {/* 图像辅助线 */}
               {showDesignGuides && (
                 <motion.div
-                  className="absolute -inset-2 border-2 border-dashed border-lavender-500/40 rounded-full pointer-events-none"
+                  className="absolute -inset-2 border-2 border-dashed border-forest-500/40 rounded-full pointer-events-none"
                   variants={designGuideVariants}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
                 >
                   {/* 十字中心线 */}
-                  <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-lavender-500/40"></div>
-                  <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-lavender-500/40"></div>
+                  <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-forest-500/40"></div>
+                  <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-forest-500/40"></div>
 
                   {/* 图像尺寸标注 */}
-                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-lavender-500/70 font-mono whitespace-nowrap">
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] text-forest-500/70 font-mono whitespace-nowrap">
                     md:w-96 md:h-96
                   </div>
 
-                  <div className="absolute -right-36 top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono whitespace-nowrap">
-                    <span className="inline-block w-6 h-[1px] bg-lavender-500/40 mr-1 align-middle"></span>
+                  <div className="absolute -right-36 top-1/2 -translate-y-1/2 text-[10px] text-forest-500/70 font-mono whitespace-nowrap">
+                    <span className="inline-block w-6 h-[1px] bg-forest-500/40 mr-1 align-middle"></span>
                     border-4 border-white shadow-xl
                   </div>
 
-                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-lavender-500/70 font-mono whitespace-nowrap">
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] text-forest-500/70 font-mono whitespace-nowrap">
                     rounded-full
                   </div>
 
                   {/* 对齐标记 */}
-                  <div className="absolute top-1/2 -left-[200px] w-[200px] h-[1px] border-t border-dashed border-lavender-500/40"></div>
-                  <div className="absolute -left-[250px] top-1/2 -translate-y-1/2 text-[10px] text-lavender-500/70 font-mono">
+                  <div className="absolute top-1/2 -left-[200px] w-[200px] h-[1px] border-t border-dashed border-forest-500/40"></div>
+                  <div className="absolute -left-[250px] top-1/2 -translate-y-1/2 text-[10px] text-forest-500/70 font-mono">
                     items-center
                   </div>
-                  <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-[10px] text-lavender-500/70 font-mono">
-                    <span className="inline-block w-1 h-4 border-l border-lavender-500/40 mr-1"></span>
+                  <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-[10px] text-forest-500/70 font-mono">
+                    <span className="inline-block w-1 h-4 border-l border-forest-500/40 mr-1"></span>
                     justify-center
                   </div>
 
                   {/* 渐变叠加层标注 */}
-                  <div className="absolute -left-10 -top-16 text-[10px] text-lavender-500/70 font-mono">
+                  <div className="absolute -left-10 -top-16 text-[10px] text-forest-500/70 font-mono">
                     gradient-overlay
                     <svg className="inline-block ml-1" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5 19L19 5M5 5L19 19" stroke="rgba(122, 90, 248, 0.6)" strokeWidth="1" strokeLinecap="round" />
@@ -661,7 +661,7 @@ const designGuideVariants = {
                   </div>
 
                   {/* 悬停状态指示 */}
-                  <div className="absolute -left-32 -bottom-12 text-[10px] text-lavender-500/70 font-mono">
+                  <div className="absolute -left-32 -bottom-12 text-[10px] text-forest-500/70 font-mono">
                     hover: scale + shadow
                     <svg className="inline-block ml-1" width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L10 10L19 1" stroke="rgba(122, 90, 248, 0.6)" strokeWidth="1" strokeLinecap="round" />
@@ -670,24 +670,24 @@ const designGuideVariants = {
 
                   {/* 添加周围的尺寸比例辅助线 */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-3/4 h-3/4 border border-dashed border-lavender-500/20 rounded-full">
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-[8px] text-lavender-500/50 font-mono">75%</div>
+                    <div className="w-3/4 h-3/4 border border-dashed border-forest-500/20 rounded-full">
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-[8px] text-forest-500/50 font-mono">75%</div>
                     </div>
                   </div>
 
                   {/* 图像内容对象拟合标注 */}
-                  <div className="absolute bottom-4 right-4 text-[8px] text-lavender-500/70 font-mono px-1 py-0.5 bg-white/10 rounded-sm backdrop-blur-sm">
+                  <div className="absolute bottom-4 right-4 text-[8px] text-forest-500/70 font-mono px-1 py-0.5 bg-white/10 rounded-sm backdrop-blur-sm">
                     object-cover
                   </div>
 
                   {/* 图像和布局之间的关系 */}
-                  <div className="absolute right-1/2 -top-10 transform translate-x-1/2 rotate-320 text-[10px] text-lavender-500/70 font-mono">
-                    <span className="inline-block w-12 h-[1px] bg-lavender-500/30 mr-1 align-middle"></span>
+                  <div className="absolute right-1/2 -top-10 transform translate-x-1/2 rotate-320 text-[10px] text-forest-500/70 font-mono">
+                    <span className="inline-block w-12 h-[1px] bg-forest-500/30 mr-1 align-middle"></span>
                     z-stacking
                   </div>
 
                   {/* 响应式设计标注 */}
-                  <div className="absolute -top-12 -right-12 text-[10px] text-lavender-500/70 font-mono">
+                  <div className="absolute -top-12 -right-12 text-[10px] text-forest-500/70 font-mono">
                     w-80 → md:w-96
                   </div>
                 </motion.div>

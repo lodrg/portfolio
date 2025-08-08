@@ -67,7 +67,7 @@ export default function BlogList({ posts }: BlogListProps) {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-lavender-100 dark:bg-lavender-900 text-lavender-800 dark:text-lavender-200 px-2 py-0.5 rounded-full text-xs"
+                    className="bg-forest-100 dark:bg-forest-900 text-forest-800 dark:text-forest-200 px-2 py-0.5 rounded-full text-xs"
                   >
                     {tag}
                   </span>
@@ -82,7 +82,7 @@ export default function BlogList({ posts }: BlogListProps) {
                 </div>
               </div>
               
-              <h2 className="text-lg font-semibold mb-2 group-hover:text-lavender-700 dark:group-hover:text-lavender-400 transition-colors duration-300">
+              <h2 className="text-lg font-semibold mb-2 group-hover:text-forest-700 dark:group-hover:text-forest-400 transition-colors duration-300">
                 {post.title}
               </h2>
               
@@ -90,7 +90,7 @@ export default function BlogList({ posts }: BlogListProps) {
                 {post.description}
               </p>
               
-              <div className="flex items-center text-lavender-700 dark:text-lavender-400 group-hover:text-lavender-800 dark:group-hover:text-lavender-300 text-sm">
+              <div className="flex items-center text-forest-700 dark:text-forest-400 group-hover:text-forest-800 dark:group-hover:text-forest-300 text-sm">
                 Read more
                 <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform duration-300" />
               </div>

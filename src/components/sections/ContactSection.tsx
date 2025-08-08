@@ -135,14 +135,14 @@ export default function ContactSection() {
             </h3>
             
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                <FaEnvelope className="text-lavender-700 dark:text-lavender-400" />
+              <div className="w-12 h-12 bg-forest-100 dark:bg-forest-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <FaEnvelope className="text-forest-700 dark:text-forest-400" />
                 </div>
                 <div>
                 <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Email</h4>
                 <a 
                   href={`mailto:${personalInfo.email}`}
-                  className="text-gray-600 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-300 hover:text-forest-700 dark:hover:text-forest-400 transition-colors"
                 >
                     {personalInfo.email}
                   </a>
@@ -150,14 +150,14 @@ export default function ContactSection() {
               </div>
               
             <div className="flex items-start space-x-4">
-              <div className="w-12 h-12 bg-lavender-100 dark:bg-lavender-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                <FaPhone className="text-lavender-700 dark:text-lavender-400" />
+              <div className="w-12 h-12 bg-forest-100 dark:bg-forest-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                <FaPhone className="text-forest-700 dark:text-forest-400" />
                 </div>
                 <div>
                 <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Phone</h4>
                 <a 
                   href={`tel:${personalInfo.phone}`}
-                  className="text-gray-600 dark:text-gray-300 hover:text-lavender-700 dark:hover:text-lavender-400 transition-colors"
+                  className="text-gray-600 dark:text-gray-300 hover:text-forest-700 dark:hover:text-forest-400 transition-colors"
                 >
                   {personalInfo.phone}
                 </a>
@@ -176,7 +176,7 @@ export default function ContactSection() {
                     id="name"
                   name="user_name"
                     required
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-forest-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
                   />
                 </div>
                 
@@ -189,7 +189,7 @@ export default function ContactSection() {
                     id="email"
                   name="user_email"
                     required
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-forest-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
                   />
                 </div>
                 
@@ -202,14 +202,14 @@ export default function ContactSection() {
                     name="message"
                   required
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-forest-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
                 />
                 </div>
                 
               <button
                   type="submit"
                 disabled={status.loading}
-                className="w-full px-6 py-3 bg-lavender-700 text-white rounded-lg hover:bg-lavender-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 bg-forest-700 text-white rounded-lg hover:bg-forest-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status.loading ? sectionText.form.sending[language] : sectionText.form.send[language]}
               </button>

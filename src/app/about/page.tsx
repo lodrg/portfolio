@@ -117,7 +117,7 @@ export default function AboutPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: bioInView ? 1 : 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="text-xl text-lavender-700 mb-6"
+              className="text-xl text-forest-700 mb-6"
             >
               {personalInfo.title}
             </motion.h3>
@@ -224,7 +224,7 @@ function TimelineItem({ title, period, description }: TimelineItemProps) {
           type: "spring",
           stiffness: 200 
         }}
-        className="absolute left-[-8px] top-0 w-4 h-4 bg-lavender-700 rounded-full"
+        className="absolute left-[-8px] top-0 w-4 h-4 bg-forest-700 rounded-full"
       />
       <div>
         <motion.h3 
