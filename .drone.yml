@@ -4,12 +4,24 @@ name: default
 
 steps:
   - name: deploy
-    commands:
-      - cd /home/administrator/xuan/portfolio
-      - git pull
-      - npm install
-      - npm run build
-      - pm2 restart "next-app" || pm2 start npm --name "next-app" -- start
+    image: appleboy/drone-ssh
+    settings:
+      host: 
+        from_secret: ssh_host
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      port: 22
+      script:
+        - cd /home/administrator/xuan/portfolio
+        - export NVM_DIR="$HOME/.nvm"
+        - source $NVM_DIR/nvm.sh
+        - nvm use 23
+        - git pull
+        - npm install
+        - npm run build
+        - pm2 restart "next-app" || pm2 start npm --name "next-app" -- start
 
 trigger:
   branch:
