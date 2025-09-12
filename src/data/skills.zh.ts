@@ -61,7 +61,7 @@ export const skillsZh: Skill[] = [
     category: "backend",
     icon: "go",
     proficiency: 4,
-    description: "我拥有一个 Go 版本的数据库项目。在我看来使用 go 编写一下底层服务是很舒适的。我打算完善一下我的数据库让它在支撑我的一下小的项目。",
+    description: "我拥有一个 Go 版本的数据库项目。在我看来使用 go 编写一下底层服务是很舒适的。我打算完善一下我的数据库让它在支撑我的一些小的项目。",
     technologies: ["Go", "Gin", "GORM", "PostgreSQL"]
   },
   {
@@ -79,7 +79,7 @@ export const skillsZh: Skill[] = [
     category: "crawler",
     icon: "crawler",
     proficiency: 5,
-    description: "之前的项目有对多个大型的社交媒体进行解析的需求，这块积累了很多经验。",
+    description: "之前的项目有对多个大型的社交媒体进行解析的需求，这块积累了很多经验。这里面包括 Twitter，Facebook，Youtube， 以及 Tiktok 等。",
     technologies: ["JsonPath", "Xpath","WebRequest Rules"]
   },
   // 添加更多技能...
