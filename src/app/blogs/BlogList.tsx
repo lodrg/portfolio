@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { BlogPost } from "@/lib/markdown";
 import { CalendarDays, Clock, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // 简化卡片出现效果
 const cardVariants = {
@@ -31,16 +32,23 @@ interface BlogListProps {
 
 export default function BlogList({ posts }: BlogListProps) {
   const router = useRouter();
+  const { language } = useLanguage();
 
   const calculateReadTime = (content: string | undefined) => {
     if (!content) return 1;
     return Math.ceil(content.split(' ').length / 200);
   };
 
+  const text = {
+    title: language === 'en' ? 'My Blogs' : '我的博客',
+    readMore: language === 'en' ? 'Read more' : '阅读更多',
+    minRead: language === 'en' ? 'min read' : '分钟阅读',
+  } as const;
+
   return (
     <div className="pt-16 pb-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-2xl font-bold mb-8 text-center text-gray-900 dark:text-white">My Blogs</h1>
+        <h1 className="text-2xl font-bold mb-8 text-center text-gray-900 dark:text-white">{text.title}</h1>
         
         <motion.div 
           className="max-w-4xl mx-auto space-y-4"
@@ -78,7 +86,7 @@ export default function BlogList({ posts }: BlogListProps) {
                 </div>
                 <div className="flex items-center">
                   <Clock size={12} className="mr-1" />
-                  {calculateReadTime(post.content)} min read
+                  {calculateReadTime(post.content)} {text.minRead}
                 </div>
               </div>
               
@@ -91,7 +99,7 @@ export default function BlogList({ posts }: BlogListProps) {
               </p>
               
               <div className="flex items-center text-forest-700 dark:text-forest-400 group-hover:text-forest-800 dark:group-hover:text-forest-300 text-sm">
-                Read more
+                {text.readMore}
                 <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </motion.article>

@@ -2,12 +2,21 @@
 
 import { motion } from "framer-motion";
 import { BlogPost as BlogPostType } from "@/lib/markdown";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface BlogPostProps {
-  post: BlogPostType;
+  postZh?: BlogPostType;
+  postEn?: BlogPostType;
 }
 
-export default function BlogPost({ post }: BlogPostProps) {
+export default function BlogPost({ postZh, postEn }: BlogPostProps) {
+  const { language } = useLanguage();
+  const post = language === 'en' ? (postEn ?? postZh) : (postZh ?? postEn);
+
+  if (!post) {
+    return null;
+  }
+
   return (
     <motion.article 
       initial={{ opacity: 0, y: 20 }}

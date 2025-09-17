@@ -6,13 +6,14 @@ import BlogList from '@/app/blogs/BlogList';
 import BlogSidebar from '@/app/blogs/BlogSidebar';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function BlogPageWrapper({ posts }: { posts: BlogPost[] }) {
+export default function BlogPageWrapper({ postsZh, postsEn }: { postsZh: BlogPost[]; postsEn: BlogPost[] }) {
   const { language } = useLanguage();
+  const sourcePosts = language === 'en' ? postsEn : postsZh;
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredPosts = posts.filter(post => {
+  const filteredPosts = sourcePosts.filter(post => {
     const matchYear = selectedYear ? post.date.startsWith(selectedYear) : true;
     const matchTag = selectedTag ? post.tags.includes(selectedTag) : true;
     const matchSearch = searchQuery ? (
@@ -38,7 +39,7 @@ export default function BlogPageWrapper({ posts }: { posts: BlogPost[] }) {
         <BlogList posts={filteredPosts} />
       </div>
       <BlogSidebar
-        posts={posts}
+        posts={sourcePosts}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
         selectedTag={selectedTag}
