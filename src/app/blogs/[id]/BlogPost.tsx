@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { BlogPost as BlogPostType } from "@/lib/markdown";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useEffect } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface BlogPostProps {
   postZh?: BlogPostType;
@@ -18,6 +19,7 @@ interface MermaidRuntime {
 
 export default function BlogPost({ postZh, postEn }: BlogPostProps) {
   const { language } = useLanguage();
+  const { theme } = useTheme();
   const post = language === 'en' ? (postEn ?? postZh) : (postZh ?? postEn);
 
   useEffect(() => {
@@ -26,7 +28,23 @@ export default function BlogPost({ postZh, postEn }: BlogPostProps) {
       try {
         const mermaidModule = await import('mermaid');
         const mermaid = (mermaidModule.default ?? mermaidModule) as unknown as MermaidRuntime;
-        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: theme === 'dark' ? 'dark' : 'default',
+          themeVariables: theme === 'dark' ? {
+            background: 'transparent',
+            primaryColor: '#3d9b6b',
+            primaryTextColor: '#e5e7eb',
+            primaryBorderColor: '#8dd0a8',
+            lineColor: '#9ca3af',
+            secondaryColor: '#374151',
+            tertiaryColor: '#111827',
+            noteBkgColor: '#1f2937',
+            noteTextColor: '#e5e7eb',
+          } : {
+            background: 'transparent',
+          },
+        });
 
         // Turn code fences into div.mermaid blocks for automatic processing
         const codeBlocks = document.querySelectorAll('pre code.language-mermaid, code.language-mermaid');
@@ -55,7 +73,7 @@ export default function BlogPost({ postZh, postEn }: BlogPostProps) {
       }
     };
     mermaidInit();
-  }, [post?.content]);
+  }, [post?.content, theme]);
 
   if (!post) {
     return null;
