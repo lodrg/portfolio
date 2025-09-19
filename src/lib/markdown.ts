@@ -2,7 +2,14 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
-import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import remarkRehype from 'remark-rehype';
+// Removed server-side mermaid plugin to avoid playwright dependency
+import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeStringify from 'rehype-stringify';
 
 const blogDirectoryZh = path.join(process.cwd(), 'src/content/blog');
 const blogDirectoryEn = path.join(process.cwd(), 'src/content/blog-en');
@@ -48,7 +55,15 @@ export async function getPostDataByLang(language: 'en' | 'zh', id: string): Prom
     const fileContents = await fs.promises.readFile(fullPath, 'utf8');
     const matterResult = matter(fileContents);
 
-    const processedContent = await remark().use(html).process(matterResult.content);
+    const processedContent = await remark()
+      .use(remarkGfm)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
+      .use(rehypeSlug)
+      .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
+      .use(rehypeHighlight)
+      .use(rehypeStringify, { allowDangerousHtml: true })
+      .process(matterResult.content);
     const contentHtml = processedContent.toString();
 
     return {
@@ -90,6 +105,7 @@ export async function getAllPostsByLang(language: 'en' | 'zh'): Promise<BlogPost
           title: matterResult.data.title,
           date: matterResult.data.date,
           description: matterResult.data.description,
+          // Keep raw markdown for list read-time calculation and preview
           content: matterResult.content,
           tags: matterResult.data.tags || [],
         };

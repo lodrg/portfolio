@@ -27,34 +27,35 @@ So we can convert it into a solution question by adding context. For example: I 
 
 A summarized answer might look like this:
 
-```graph TD
-    A[Start] --> B{Server Prep};
-    B --> B1[SSH];
-    B1 --> B2[Update OS & Install Git];
-    B2 --> B3[Install Node.js & npm/yarn (Use NVM)];
-    B3 --> B4[Install PM2];
-    B4 --> B5[Install Nginx];
-    B5 --> B6[Open firewall ports (22, 80, 443)];
+```mermaid
+graph TD
+    A["Start"] --> B{"Server Prep"};
+    B --> B1["SSH"];
+    B1 --> B2["Update OS and Install Git"];
+    B2 --> B3["Install Node.js and npm/yarn (Use NVM)"];
+    B3 --> B4["Install PM2"];
+    B4 --> B5["Install Nginx"];
+    B5 --> B6["Open firewall ports (22, 80, 443)"];
 
-    B{Server Prep} --> C{Next.js Deploy};
-    C --> C1[Clone repo to server];
-    C1 --> C2[Configure .env.production];
-    C2 --> C3[Install dependencies];
-    C3 --> C4[Build Next.js app];
-    C4 --> C5[Run with PM2];
+    B{"Server Prep"} --> C{"Next.js Deploy"};
+    C --> C1["Clone repo to server"];
+    C1 --> C2["Configure .env.production"];
+    C2 --> C3["Install dependencies"];
+    C3 --> C4["Build Next.js app"];
+    C4 --> C5["Run with PM2"];
 
-    C{Next.js Deploy} --> D{Nginx & Domain};
-    D --> D1[Reverse proxy config];
-    D1 --> D2[DNS records];
-    D2 --> D3[SSL with Certbot];
-    D3 --> E[Go live];
+    C{"Next.js Deploy"} --> D{"Nginx and Domain"};
+    D --> D1["Reverse proxy config"];
+    D1 --> D2["DNS records"];
+    D2 --> D3["SSL with Certbot"];
+    D3 --> E["Go live"];
 
-    E --> F[Ongoing];
-    F --> F1[CI/CD];
-    F1 --> F2[Logging];
-    F2 --> F3[Monitoring];
-    F3 --> F4[Backups];
-    F4 --> F5[Security];
+    E --> F["Ongoing"];
+    F --> F1["CI/CD"];
+    F1 --> F2["Logging"];
+    F2 --> F3["Monitoring"];
+    F3 --> F4["Backups"];
+    F4 --> F5["Security"];
 ```
 
 This is highly feasible. Choose based on your background and complete the steps. For example, I didn’t know PM2 initially; after some research I adopted it. For CI/CD, Jenkins consumed too much memory for a personal site, so I used Drone instead.

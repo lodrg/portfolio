@@ -3,15 +3,59 @@
 import { motion } from "framer-motion";
 import { BlogPost as BlogPostType } from "@/lib/markdown";
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useEffect } from 'react';
 
 interface BlogPostProps {
   postZh?: BlogPostType;
   postEn?: BlogPostType;
 }
 
+interface MermaidRuntime {
+  run?: (options: { querySelector: string }) => Promise<void> | void;
+  init?: (a?: unknown, selector?: string) => void;
+  initialize: (config: unknown) => void;
+}
+
 export default function BlogPost({ postZh, postEn }: BlogPostProps) {
   const { language } = useLanguage();
   const post = language === 'en' ? (postEn ?? postZh) : (postZh ?? postEn);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mermaidInit = async () => {
+      try {
+        const mermaidModule = await import('mermaid');
+        const mermaid = (mermaidModule.default ?? mermaidModule) as unknown as MermaidRuntime;
+        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+
+        // Turn code fences into div.mermaid blocks for automatic processing
+        const codeBlocks = document.querySelectorAll('pre code.language-mermaid, code.language-mermaid');
+        let idx = 0;
+        for (const codeEl of Array.from(codeBlocks)) {
+          const pre = (codeEl as HTMLElement).closest('pre');
+          const code = (codeEl as HTMLElement).textContent ?? '';
+          const container = document.createElement('div');
+          container.className = 'mermaid';
+          container.setAttribute('data-mermaid-id', `m-${idx++}`);
+          container.textContent = code;
+          if (pre) {
+            pre.replaceWith(container);
+          } else {
+            (codeEl as HTMLElement).replaceWith(container);
+          }
+        }
+
+        if (typeof mermaid.run === 'function') {
+          await mermaid.run({ querySelector: '.mermaid' });
+        } else if (typeof mermaid.init === 'function') {
+          mermaid.init(undefined, '.mermaid');
+        }
+      } catch (e) {
+        console.error('Mermaid init failed:', e);
+      }
+    };
+    mermaidInit();
+  }, [post?.content]);
 
   if (!post) {
     return null;

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import 'highlight.js/styles/github-dark.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { personalInfo } from '@/data/personal-info';
