@@ -1,0 +1,31 @@
+name: Production Deployment
+
+on:
+  push:
+    branches:
+      - main  # 只有 main 分支有更新时才触发
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # 告诉 GitHub 使用你的服务器 Runner
+
+    steps:
+      # 第一步：把 GitHub 上的最新代码拉取到服务器 Runner 的工作目录
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 第二步：安装依赖
+      # 使用 clean-install (ci) 保证环境干净，且速度更快
+      - name: Install dependencies
+        run: npm ci
+
+      # 第三步：构建 Next.js (生成 .next 文件夹)
+      - name: Build project
+        run: npm run build
+
+      # 第四步：使用 PM2 启动或重启服务
+      - name: Deploy with PM2
+        run: |
+          # 检查 pm2 列表中是否已有名为 portfolio 的任务
+          # 如果有，就重载（无缝切换）；如果没有，就启动
+          pm2 describe portfolio > /dev/null && pm2 reload portfolio || pm2 start npm --name "portfolio" -- start
